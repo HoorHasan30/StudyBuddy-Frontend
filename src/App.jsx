@@ -9,13 +9,17 @@ import Dashboard from "./pages/Dashboard";
 import AllCourses from "./pages/courses/AllCourses";
 import CreateCourse from "./pages/courses/CreateCourse";
 import CourseDetails from "./pages/courses/CourseDetails";
+import EditCourse from "./pages/courses/EditCourse";
+import { createCourse, getAllCourses, getOneCourse, deleteCourse, updateCourse } from "./services/courseService";
 
+import CreateTable from "./pages/timetable/CreateTable";
+import GetTable from "./pages/timetable/GetTable";
+import { getTimetable, createTimeTable, deleteTimetable } from "./services/timetableService";
 
 import { useEffect } from "react";
 import { getCurrentUser, logout } from "./services/authService";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
-import EditCourse from "./pages/courses/EditCourse";
 function App() {
   return (
     <div>
@@ -30,6 +34,9 @@ function App() {
         <Route path="/courses/create" element={<ProtectedRoute><CreateCourse/></ProtectedRoute>}/>
         <Route path="/courses/:id" element={<ProtectedRoute><CourseDetails/></ProtectedRoute>}/>
         <Route path="/courses/:id/edit" element={<ProtectedRoute><EditCourse/></ProtectedRoute>}/>
+
+        <Route path="/timetable" element={<ProtectedRoute><GetTable/></ProtectedRoute>}/>
+        <Route path="/timetable/create" element={<ProtectedRoute><CreateTable/></ProtectedRoute>}/>
 
 
       </Routes>
