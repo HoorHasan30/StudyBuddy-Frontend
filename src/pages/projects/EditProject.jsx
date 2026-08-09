@@ -42,7 +42,15 @@ function EditProject() {
       async function loadDetails() {
         try {
           const response = await getProjectById(projectId)
-          setFormData(response)
+          setFormData(
+            {
+          title: response.title ?? '',
+          description: response.description ?? '',
+          deadline: response.deadline
+            ? new Date(response.deadline).toISOString().slice(0, 10)
+            : ''
+        }
+          )
         }
         catch (err) {
           setError(err?.response?.data?.message);
