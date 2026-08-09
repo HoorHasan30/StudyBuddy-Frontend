@@ -12,7 +12,7 @@ function CreateCourse() {
   })
 
   const navigate = useNavigate()
-
+  const [error, setError] = useState(false)
 
   function handleChange(event) {
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -27,13 +27,14 @@ function CreateCourse() {
       navigate('/courses')
 
     } catch (error) {
-      setError(error.response.data.message)
+      setError(error?.response?.data?.message)
 
     }
   }
 
   return (
     <div>
+
       <h1>Create Course</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
@@ -43,6 +44,9 @@ function CreateCourse() {
         <textarea name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
 
         <button>Create Course</button>
+        <button type='button'  onClick={()=>{
+          navigate('/courses')
+        }}>Back</button>
 
       </form>
     </div>

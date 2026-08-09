@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getOneCourse, updateCourse } from '../../services/courseService'
-
+import { Flex, Spin } from 'antd'
 
 function EditCourse() {
 
@@ -32,7 +32,8 @@ function EditCourse() {
       navigate('/courses')
 
     } catch (error) {
-      setError(error.message)
+      setError(error?.response?.data?.message)
+
     }
   }
 
@@ -46,7 +47,7 @@ function EditCourse() {
         setFormData(res)
 
       } catch (error) {
-        setError(error.response.data.message)
+        setError(error?.response?.data?.message)
 
 
       } finally {
@@ -59,6 +60,11 @@ function EditCourse() {
   }, [])
 
 
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+        <Spin size='large' description='Loading...' />
+    </Flex>
+   if(error) return <p>ERROR: {error}</p>
+
   return (
     <div>
       <h1>EditCourse</h1>
@@ -70,6 +76,9 @@ function EditCourse() {
         <textarea name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
 
         <button>Edit Course</button>
+        <button type='button' onClick={()=>{
+          navigate(`/courses/${id}`)
+        }}>Back</button>
 
       </form>
     </div>

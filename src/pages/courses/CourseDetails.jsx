@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getOneCourse } from '../../services/courseService'
+import { Flex, Spin } from 'antd'
 
 function CourseDetails() {
   const [course, setCourse] = useState(null)
@@ -20,7 +21,7 @@ function CourseDetails() {
         setCourse(res)
 
       } catch (error) {
-        setError(error.response.data.message)
+        setError(error?.response?.data?.message)
 
       }finally{
         setLoading(false)
@@ -29,6 +30,10 @@ function CourseDetails() {
     loadCourseDetails()
   },[])
 
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+        <Spin size='large' description='Loading...' />
+    </Flex>
+   if(error) return <p>ERROR: {error}</p>
   return (
     <div>
       {course &&(
@@ -39,6 +44,10 @@ function CourseDetails() {
         <button onClick={()=>{
           navigate(`/courses/${course._id}/edit`)
         }}>Edit Course Detials</button>
+
+        <button onClick={()=>{
+          navigate('/courses')
+        }}>Back</button>
         </>
       )}
     </div>
