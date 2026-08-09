@@ -46,9 +46,7 @@ function EditProject() {
             {
               title: response.title ?? '',
               description: response.description ?? '',
-              deadline: response.deadline
-                ? new Date(response.deadline).toISOString().slice(0, 10)
-                : ''
+              deadline: response.deadline ? new Date(response.deadline).toISOString().slice(0, 10) : ''
             }
           )
         }

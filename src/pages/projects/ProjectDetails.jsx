@@ -37,8 +37,8 @@ function ProjectDetails() {
   //   year: 'numeric'
   // }).format(new Date(project.deadline))
 
-  const allCollaberators = project.collaberators?.length ? project.collaberators.map(c => c.username).join(', ') : 'No Collaberators'
-  const projectTasks = project.tasks?.length ? project.tasks.map(t => t.title) : 'No Tasks Yet'
+  const allCollaberators = project.collaberators?.length ? project.collaberators.map(c => c) : []
+  const projectTasks = project.tasks?.length ? project.tasks.map(t => t) : []
 
   return (
     <div>
@@ -47,9 +47,33 @@ function ProjectDetails() {
 
       <p>Project Deadline: </p>
 
-      <p>Project Collaberators: {allCollaberators}</p>
+      <p>Project Collaberators: </p>
+      {allCollaberators.length ? (
+        <div>
+          {allCollaberators.map( u => (
+            <div key={`${u._id}`}>
+              {u.username}
+            </div>
+          ))
+          }
+        </div>
+      ) :
+        (<p>No Collaborators</p>)
+      }
 
-      <p>Project Tasks: {projectTasks}</p>
+      <p>Project Tasks:</p>
+      {projectTasks.length ? (
+        <div>
+          {projectTasks.map((task) => (
+            <div key={`${task._id}`}>
+              {task.title}
+            </div>
+          ))
+          }
+        </div>
+      ) :
+        (<p>No Tasks Yet</p>)
+      }
 
       <button onClick={() => { navigate(`/projects/${projectId}/edit`) }}>Edit Project Details</button>
     </div>
