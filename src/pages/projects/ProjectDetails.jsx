@@ -10,7 +10,7 @@ function ProjectDetails() {
 
   const [error, setError] = useState(false)
 
-  const [project, setProject] = useState([])
+  const [project, setProject] = useState({})
   const { projectId } = useParams()
 
 
@@ -31,20 +31,27 @@ function ProjectDetails() {
     []
   )
 
-  const allCollaberators = project.collaberators?.length ? project.collaberators.map( c => c.username ).join(', ') : 'No Collaberators'
-  const projectTasks = project.tasks?.length ? project.tasks.map( t => t.title ) : 'No Tasks Yet'
+  // const projectDeadline = new Intl.DateTimeFormat('en-US', {
+  //   month: 'short',
+  //   day: 'numeric',
+  //   year: 'numeric'
+  // }).format(new Date(project.deadline))
+
+  const allCollaberators = project.collaberators?.length ? project.collaberators.map(c => c.username).join(', ') : 'No Collaberators'
+  const projectTasks = project.tasks?.length ? project.tasks.map(t => t.title) : 'No Tasks Yet'
 
   return (
     <div>
       <h1>{project.title} Details</h1>
       <p>{project.description}</p>
 
-      <p>Project Deadline: {new Date(project.deadline).getDay()}/{new Date(project.deadline).getMonth()}/{new Date(project.deadline).getFullYear()}</p>
+      <p>Project Deadline: </p>
 
       <p>Project Collaberators: {allCollaberators}</p>
 
       <p>Project Tasks: {projectTasks}</p>
 
+      <button onClick={() => { navigate(`/projects/${projectId}/edit`) }}>Edit Project Details</button>
     </div>
   )
 }

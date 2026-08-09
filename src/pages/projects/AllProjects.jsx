@@ -47,6 +47,8 @@ function AllProjects() {
       <h1>My Projects</h1>
       <p className="error">{error}</p>
 
+      <button onClick={() => {navigate('/projects/create')}}>Create Project</button>
+
       {projects.map(p =>
         <div key={p._id}>
           <h3>{p.title}</h3>
