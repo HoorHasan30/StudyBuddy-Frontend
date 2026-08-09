@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { getAllProjects, deleteProject } from '../../services/projectService'
-import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router'
 
 function AllProjects() {
 
   const navigate = useNavigate()
-  const { user } = useAuth()
 
   const [error, setError] = useState(false)
 
@@ -60,6 +58,7 @@ function AllProjects() {
           }).format(new Date(p.deadline))}</p>
 
           <button onClick={() => { handleDeleteProject(p._id) }}>Delete</button>
+          <button onClick={() => { navigate(`/projects/${p._id}`) }}>View Details</button>
         </div>
       )}
 
