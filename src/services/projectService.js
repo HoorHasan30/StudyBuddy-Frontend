@@ -32,12 +32,12 @@ async function deleteProject(id) {
 }
 
 async function addCollaberator(id, body) {
-    const response = await api.post(`/projects/${id}/add-collaberator`, body)
+    const response = await api.put(`/projects/${id}/add-collaberator`, body)
     return response.data
 }
 
 async function removeCollaberator(id, body) {
-    const response = await api.post(`/projects/${id}/remove-collaberator`, body)
+    const response = await api.put(`/projects/${id}/remove-collaberator`, body)
     return response.data
 }
 
