@@ -22,7 +22,7 @@ async function getProjectById(id) {
 }
 
 async function updateProjectDetails(id, body) {
-    const response = await api.put(`/projects/${id}`, body)
+    const response = await api.put(`/projects/${id}/edit`, body)
     return response.data
 }
 
