@@ -19,6 +19,12 @@ import { getTimetable, createTimeTable, deleteTimetable } from "./services/timet
 import CreateSession from "./pages/sessions/CreateSession";
 import { createSessions } from "./services/sessionService";
 
+import CreateProject from "./pages/projects/CreateProject";
+import AllProjects from "./pages/projects/AllProjects";
+import ProjectDetails from "./pages/projects/ProjectDetails";
+import EditProject from "./pages/projects/EditProject";
+import { createProject, getAllProjects } from "./services/projectService";
+
 import { useEffect } from "react";
 import { getCurrentUser, logout } from "./services/authService";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -42,6 +48,11 @@ function App() {
         <Route path="/timetable/create" element={<ProtectedRoute><CreateTable/></ProtectedRoute>}/>
 
         <Route path="/sessions" element={<ProtectedRoute><CreateSession/></ProtectedRoute>}/>
+
+        <Route path="/projects/create" element={<ProtectedRoute><CreateProject/></ProtectedRoute>}/>
+        <Route path="/projects" element={<ProtectedRoute><AllProjects/></ProtectedRoute>}/>
+        <Route path="/projects/:projectId" element={<ProtectedRoute><ProjectDetails/></ProtectedRoute>}/>
+        <Route path="/projects/:projectId/edit" element={<ProtectedRoute><EditProject/></ProtectedRoute>}/>
 
 
       </Routes>
