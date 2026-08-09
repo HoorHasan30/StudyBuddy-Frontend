@@ -11,7 +11,7 @@ async function createCourse(body) {
 }
 
 async function getOneCourse(id){
-    const res = await api.get('/courses' + id)
+    const res = await api.get('/courses/' + id)
     return res.data
 
 }

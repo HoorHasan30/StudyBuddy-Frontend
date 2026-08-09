@@ -7,6 +7,7 @@ import { useAuth } from '../../context/AuthContext'
 
 function AllCourses() {
 
+  const navigate = useNavigate()
   const { user } = useAuth
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
@@ -21,7 +22,7 @@ function AllCourses() {
       setCourses(res)
 
     } catch (error) {
-      setError(error.message)
+      setError(error.response.data.message)
     }finally{
       setLoading(false)
     }
@@ -29,7 +30,7 @@ function AllCourses() {
 
    useEffect(()=>{
     loadCourses()
-   })
+   },[])
 
 
    async function handleDelete(id){
@@ -44,9 +45,14 @@ function AllCourses() {
       {courses.map((oneCourse)=>
       <div key={oneCourse._id}>
         <p>{oneCourse.title}</p>
+
         <button onClick={()=>{
           handleDelete(oneCourse._id)
         }}>Delete</button>
+
+        <button onClick={()=>{
+          navigate(`/courses/${oneCourse._id}`)
+        }}>View Detials</button>
       </div>
       )}
 

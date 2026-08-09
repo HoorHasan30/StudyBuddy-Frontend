@@ -4,7 +4,7 @@ import React from 'react'
 function CourseDetails() {
   return (
     <div>
-        <h1>Course Detauls</h1>
+        <h1>Course Details</h1>
     </div>
   )
 }
