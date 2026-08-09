@@ -8,7 +8,7 @@ import { useAuth } from '../../context/AuthContext'
 function AllCourses() {
 
   const navigate = useNavigate()
-  const { user } = useAuth
+  const { user } = useAuth()
   const [courses, setCourses] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
