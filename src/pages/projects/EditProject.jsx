@@ -44,12 +44,12 @@ function EditProject() {
           const response = await getProjectById(projectId)
           setFormData(
             {
-          title: response.title ?? '',
-          description: response.description ?? '',
-          deadline: response.deadline
-            ? new Date(response.deadline).toISOString().slice(0, 10)
-            : ''
-        }
+              title: response.title ?? '',
+              description: response.description ?? '',
+              deadline: response.deadline
+                ? new Date(response.deadline).toISOString().slice(0, 10)
+                : ''
+            }
           )
         }
         catch (err) {
