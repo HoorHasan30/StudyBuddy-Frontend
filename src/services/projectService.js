@@ -13,6 +13,7 @@ async function getAllProjects() {
 
 async function getProjectsDeadline() {
     const response = await api.get('/projects/deadlines')
+    return response.data
 }
 
 async function getProjectById(id) {
