@@ -70,7 +70,7 @@ function CreateProject() {
         <div>
           <label htmlFor='deadline'>Project Deadline:</label>
           <input
-            type='Date'
+            type='date'
             autoComplete='off'
             id='deadline'
             value={formData.deadline}
