@@ -17,10 +17,10 @@ function CreateCourse() {
         <h1>Create Course</h1>
         <form >
           <label htmlFor="title">Title:</label>
-          <input type="text" name='title' id='title' value={}/>
+          <input type="text" name='title' id='title'/>
 
           <label htmlFor="description">Description:</label>
-          <input type="textarea" name='description' id='description' value={}/> 
+          <input type="textarea" name='description' id='description'/> 
 
           <button>Create Course</button>         
 

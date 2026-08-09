@@ -37,7 +37,7 @@ import { useEffect } from "react";
 import { getCurrentUser, logout } from "./services/authService";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
-import EditTask from "./pages/tasks/EditTask";
+
 function App() {
   return (
     <div>
@@ -55,9 +55,9 @@ function App() {
 
 
         <Route path="/courses/:id/tasks" element={<ProtectedRoute><AllTasks/></ProtectedRoute>}/>
-        <Route path="/projects/:id/tasks/create" element={<ProtectedRoute><CreateTask/></ProtectedRoute>}/>
-        <Route path="/projects/:id/tasks/:taskId" element={<ProtectedRoute><TaskDetails/></ProtectedRoute>}/>
-        <Route path="/projects/:id/tasks/:taskId/edit" element={<ProtectedRoute><EditTask/></ProtectedRoute>}/>
+        <Route path="/courses/:id/tasks/create" element={<ProtectedRoute><CreateTask/></ProtectedRoute>}/>
+        <Route path="/courses/:id/tasks/:taskId" element={<ProtectedRoute><TaskDetails/></ProtectedRoute>}/>
+        <Route path="/courses/:id/tasks/:taskId/edit" element={<ProtectedRoute><EditTask/></ProtectedRoute>}/>
 
 
 
@@ -75,8 +75,6 @@ function App() {
         <Route path="/projects/:projectId/tasks/create" element={<ProtectedRoute><CreateTask/></ProtectedRoute>}/>
         <Route path="/projects/:projectId/tasks/:taskId" element={<ProtectedRoute><TaskDetails/></ProtectedRoute>}/>
         <Route path="/projects/:projectId/tasks/:taskId/edit" element={<ProtectedRoute><EditTask/></ProtectedRoute>}/>
-
-
 
       </Routes>
     </div>
