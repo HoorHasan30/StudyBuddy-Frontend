@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { getOneCourse, createCourseTask, deleteCourseTask, updateTaskStatus} from '../../services/courseService'
+import { getOneCourse, createCourseTask, deleteCourseTask, updateTaskStatus } from '../../services/courseService'
 import { Flex, Spin } from 'antd'
 import { useAuth } from '../../context/AuthContext'
 
@@ -41,7 +41,7 @@ function CourseDetails() {
   async function handleSubmit(event) {
     try {
       event.preventDefault()
-          const res = await createCourseTask(id, formData)
+      const res = await createCourseTask(id, formData)
       await loadCourseDetails()
 
       setFormData({
@@ -55,22 +55,22 @@ function CourseDetails() {
 
     }
   }
-  
 
-    async function handleDelete(taskId) {
+
+  async function handleDelete(taskId) {
     try {
       await deleteCourseTask(id, taskId)
       await loadCourseDetails()
 
     }
     catch (error) {
-          console.log('ERROR:', error)
+      console.log('ERROR:', error)
 
       setError(error.response.data.message)
     }
   }
 
-    async function handleTaskStatus(taskId) {
+  async function handleTaskStatus(taskId) {
     try {
       await updateTaskStatus(id, taskId, { status: "Done" })
       await loadCourseDetails()
@@ -124,22 +124,30 @@ function CourseDetails() {
           <h2>Add task:</h2>
 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="title">Task Title:</label>
-            <input type="text" name='title' id='title' onChange={handleChange} />
+            <div>
+              <label htmlFor="title">Task Title:</label>
+              <input type="text" name='title' id='title' onChange={handleChange} />
+            </div>
 
-            <label htmlFor="priority">Task Priority:</label>
+            <div>
+              <label htmlFor="priority">Task Priority:</label>
 
-            <select name="priority" id="priority" onChange={handleChange}>
-              <option value="">Select proiority</option>
-              <option value="High"> High</option>
-              <option value="Moderate">Moderates</option>
-              <option value="Low">Low</option>
+              <select name="priority" id="priority" onChange={handleChange}>
+                <option value="">Select proiority</option>
+                <option value="High"> High</option>
+                <option value="Moderate">Moderates</option>
+                <option value="Low">Low</option>
 
-            </select>
+              </select>
+
+            </div>
 
 
-            <label htmlFor="deadline">Task Deadline:</label>
-            <input type="date" name='deadline' id='deadline' onChange={handleChange} />
+            <div>
+              <label htmlFor="deadline">Task Deadline:</label>
+              <input type="date" name='deadline' id='deadline' onChange={handleChange} />
+
+            </div>
 
             <button>Add </button>
           </form>
@@ -155,13 +163,13 @@ function CourseDetails() {
                 year: 'numeric'
               }).format(new Date(task.deadline))} -- {task.status}
 
-          {courseOwnerId === currentUserId && (
+              {courseOwnerId === currentUserId && (
                 <>
-                       <button onClick={() => { handleDelete(task._id) }}>Delete</button>
+                  <button onClick={() => { handleDelete(task._id) }}>Delete</button>
 
-                  {task.status === 'To Do'? <button onClick={() => { handleTaskStatus(task._id) }}>Done</button> : ''}
-            
-              </>
+                  {task.status === 'To Do' ? <button onClick={() => { handleTaskStatus(task._id) }}>Done</button> : ''}
+
+                </>
               )}
             </div>
           ))}
