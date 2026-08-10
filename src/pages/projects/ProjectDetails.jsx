@@ -221,6 +221,10 @@ function ProjectDetails() {
           {projectTasks.map((task) => (
             <div key={`${task._id}`}>
               {task.title}
+
+              {task.owner?._id?.toString() !== user?._id?.toString() ?
+                <button onClick={() => { handleDeleteTask(task._id) }}>Remove</button>
+                : ''}
             </div>
           ))
           }
