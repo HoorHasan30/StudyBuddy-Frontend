@@ -13,8 +13,8 @@ async function createTimeTable(body){
 
 }
 
-async function deleteTimetable(id){
-    const res = await api.delete(`/timetable/${id}`)
+async function deleteTimetable(){
+    const res = await api.delete('/timetable')
     return res.data
 }
 

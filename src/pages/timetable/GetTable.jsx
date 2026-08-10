@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 import { Flex, Spin } from 'antd'
-import { getTimetable } from '../../services/timetableService'
+import { getTimetable, deleteTimetable } from '../../services/timetableService'
 
 function GetTable() {
 
@@ -23,13 +23,25 @@ function GetTable() {
       setTimeTable(res)
 
     } catch (error) {
-      setError(error?.response?.data?.message)
+      if(error.response.status === 404){
+
+      }
+      else{
+
+        setError(error?.response?.data?.message)
+      }
 
     } finally {
       setLoading(false)
     }
 
   }
+
+   async function handleDelete(){
+    await deleteTimetable()
+    loadTimeTable()
+   }
+
   useEffect(() => {
     loadTimeTable()
   }, [])
@@ -43,6 +55,10 @@ function GetTable() {
   return (
     <div>
       <h1>My TimeTable</h1>
+          <button onClick={()=>{
+          handleDelete()
+        }}>Delete</button>
+
       <img src={timeTable.tableImage.url} alt="Current Timetable" />
 
     </div>
