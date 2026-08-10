@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { getProjectById, addCollaberator, removeCollaberator } from '../../services/projectService'
+import { getProjectById, addCollaberator, removeCollaberator, createProjectTask, deleteProjectTaskById } from '../../services/projectService'
 import { useAuth } from '../../context/AuthContext'
 
 
@@ -14,6 +14,12 @@ function ProjectDetails() {
     username: ''
   });
 
+  const [taskFormData, setTaskFormData] = useState({
+    title: '',
+    deadline: '',
+    priority: ''
+  })
+
   const [project, setProject] = useState({})
   const { projectId } = useParams()
   const { user } = useAuth()
@@ -22,6 +28,17 @@ function ProjectDetails() {
     try {
       await removeCollaberator(projectId, { username: collaboratorUsername })
       await loadProjectDetails()
+    }
+    catch (err) {
+      setError(err.response.data.message)
+    }
+  }
+
+  async function handleDeleteTask(id) {
+    try {
+      await deleteProjectTaskById(projectId, id)
+      await loadProjectDetails()
+
     }
     catch (err) {
       setError(err.response.data.message)
@@ -54,18 +71,42 @@ function ProjectDetails() {
     }));
   }
 
+  function handleChangeTask(event) {
+    const { name, type, value, checked } = event.target;
+
+    setTaskFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  }
+
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
       const response = await addCollaberator(projectId, formData)
       await loadProjectDetails()
-      setFormData({username: ''})
+      setFormData({ username: '' })
     }
     catch (err) {
       setError(err?.response?.data?.message);
     }
   };
+
+  async function handleSubmitTask(event) {
+    try {
+      const response = await createProjectTask(projectId, taskFormData)
+      await loadProjectDetails()
+      setTaskFormData({
+        title: '',
+        deadline: '',
+        priority: ''
+      })
+    }
+    catch (err) {
+      setError(err?.response?.data?.message);
+    }
+  }
 
   useEffect(
     () => {
@@ -101,7 +142,7 @@ function ProjectDetails() {
       </form>
 
       <hr></hr>
-      
+
       <p>{project.description}</p>
 
       <p>Project Deadline: {project.deadline}</p>
@@ -125,11 +166,65 @@ function ProjectDetails() {
       }
 
       <p>Project Tasks:</p>
+      <h2>Add Task:</h2>
+
+      <form autoComplete='off' onSubmit={handleSubmitTask}>
+        <div>
+          <label htmlFor='title'>Task Title:</label>
+          <input
+            type='text'
+            autoComplete='off'
+            id='title'
+            value={taskFormData.title}
+            name='title'
+            onChange={handleChangeTask}
+            required
+          />
+        </div>
+
+        <div>
+          <label htmlFor='priority'>Task Priority:</label>
+          <select
+            id='priority'
+            name='priority'
+            value={taskFormData.priority}
+            onChange={handleChangeTask}
+            required
+          >
+            <option value=''>Select priority</option>
+            <option value='High'>High</option>
+            <option value='Moderate'>Moderate</option>
+            <option value='Low'>Low</option>
+          </select>
+        </div>
+
+        <div>
+          <label htmlFor='deadline'>Task Deadline:</label>
+          <input
+            type='date'
+            autoComplete='off'
+            id='deadline'
+            value={taskFormData.deadline}
+            name='deadline'
+            onChange={handleChangeTask}
+          />
+        </div>
+
+        <div>
+          <button>Add</button>
+        </div>
+
+      </form>
+
       {projectTasks.length ? (
         <div>
           {projectTasks.map((task) => (
             <div key={`${task._id}`}>
               {task.title}
+
+              {task.owner?._id?.toString() !== user?._id?.toString() ?
+                <button onClick={() => { handleDeleteTask(task._id) }}>Remove</button>
+                : ''}
             </div>
           ))
           }

@@ -41,6 +41,33 @@ async function removeCollaberator(id, body) {
     return response.data
 }
 
+// tasks
+async function createProjectTask(projectId, body) {
+    const response = await api.post(`/projects/${projectId}/tasks`, body)
+    return response.data
+}
+
+async function getProjectTaskDetails(projectId, taskId) {
+    const response = await api.get(`/projects/${projectId}/tasks/${taskId}`)
+    return response.data
+}
+
+async function updateProjectTaskById(projectId, taskId, body) {
+    const response = await api.put(`/projects/${projectId}/tasks/${taskId}`, body)
+    return response.data
+}
+
+async function updateProjectTaskStatus(projectId, taskId, body) {
+    const response = await api.put(`/projects/${projectId}/tasks/${taskId}/status`, body)
+    return response.data
+}
+
+async function deleteProjectTaskById(projectId, taskId) {
+    const response = await api.delete(`/projects/${projectId}/tasks/${taskId}`)
+    return response.data
+}
+
+
 export {
     createProject,
     getAllProjects,
@@ -49,5 +76,10 @@ export {
     updateProjectDetails,
     deleteProject,
     addCollaberator,
-    removeCollaberator
+    removeCollaberator,
+    createProjectTask,
+    getProjectTaskDetails,
+    updateProjectTaskById,
+    updateProjectTaskStatus,
+    deleteProjectTaskById,
 }

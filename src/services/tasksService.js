@@ -1,7 +1,7 @@
 import api from "./api";
 
 async function getTasksDeadline(){
-    const response = await api.get('/tasks/deadlines')
+    const response = await api.get('/tasks/deadline')
     return response.data
 }
 
