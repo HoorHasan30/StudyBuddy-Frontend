@@ -34,8 +34,13 @@ function AllCourses() {
 
 
    async function handleDelete(id){
-    await deleteCourse(id)
-    loadCourses()
+    try {
+      await deleteCourse(id)
+      loadCourses()
+      
+    } catch (error) {
+     setError(error?.response?.data?.message)
+    }
    }
 
     if (loading) return <Flex align='center' gap='medium' justify='center'>
