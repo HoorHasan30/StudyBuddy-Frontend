@@ -23,10 +23,10 @@ function GetTable() {
       setTimeTable(res)
 
     } catch (error) {
-      if(error?.response?.status === 404){
+      if (error?.response?.status === 404) {
 
       }
-      else{
+      else {
 
         setError(error?.response?.data?.message)
       }
@@ -37,10 +37,10 @@ function GetTable() {
 
   }
 
-   async function handleDelete(){
+  async function handleDelete() {
     await deleteTimetable()
     loadTimeTable()
-   }
+  }
 
   useEffect(() => {
     loadTimeTable()
@@ -50,14 +50,23 @@ function GetTable() {
     <Spin size='large' description='Loading...' />
   </Flex>
   if (error) return <p>ERROR: {error}</p>
-  if (!timeTable) return <p>No timetable to show yet</p>
+  if (!timeTable) return (
+    <div>
+      <p>No timetable to show yet</p>
+      <button onClick={() => {
+        navigate('/timetable/create')
+      }}>Add TimeTable</button>
+    </div>
+
+  )
 
   return (
     <div>
       <h1>My TimeTable</h1>
-          <button onClick={()=>{
-          handleDelete()
-        }}>Delete</button>
+
+      <button onClick={() => {
+        handleDelete()
+      }}>Delete</button>
 
       <img src={timeTable.tableImage.url} alt="Current Timetable" />
 
