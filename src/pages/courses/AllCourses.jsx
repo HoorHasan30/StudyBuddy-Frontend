@@ -46,11 +46,13 @@ function AllCourses() {
 
   return (
     <div>
+
+      <h1>My Courses</h1>
         <button onClick={()=>{
           navigate('/courses/create')
         }}>Create Course</button>
 
-      <h1>My Courses</h1>
+        
       {courses.map((oneCourse)=>
       <div key={oneCourse._id}>
         <p>{oneCourse.title}</p>
