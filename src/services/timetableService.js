@@ -10,6 +10,7 @@ async function createTimeTable(body){
     const res = await api.post('/timetable', body)
     return res.data
 
+
 }
 
 async function deleteTimetable(id){
