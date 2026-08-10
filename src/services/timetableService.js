@@ -2,7 +2,7 @@ import api from './api'
 
 
 async function getTimetable(){
-    const res = await api.get('timetable')
+    const res = await api.get('/timetable')
     return res.data
 }
 
