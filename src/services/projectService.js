@@ -41,7 +41,6 @@ async function removeCollaberator(id, body) {
     return response.data
 }
 
-
 // tasks
 async function createProjectTask(projectId, body) {
     const response = await api.post(`/projects/${projectId}/tasks`, body)
