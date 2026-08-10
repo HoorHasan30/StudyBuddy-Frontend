@@ -15,8 +15,12 @@ function CreateCourse() {
   const [error, setError] = useState(false)
 
   function handleChange(event) {
-    setFormData({ ...formData, [event.target.name]: event.target.value })
+    const { name, type, value, checked } = event.target;
 
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   }
 
   async function handleSubmit(event) {
@@ -38,13 +42,13 @@ function CreateCourse() {
       <h1>Create Course</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
-        <input type="text" name='title' id='title' onChange={handleChange} value={formData.title} />
+        <input type="text" name='title' id='title' onChange={handleChange} value={formData.title} required/>
 
         <label htmlFor="description">Description:</label>
         <textarea name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
 
         <button>Create Course</button>
-        <button type='button'  onClick={()=>{
+        <button type='button' onClick={() => {
           navigate('/courses')
         }}>Back</button>
 
