@@ -39,7 +39,7 @@ function CreateTable() {
       formData.append('image', selectedFile)
       const createdTable = await createTimeTable(formData)
 
-      
+      console.log('after creating', createdTable)
       navigate('/timetable')
 
     } catch (error) {
