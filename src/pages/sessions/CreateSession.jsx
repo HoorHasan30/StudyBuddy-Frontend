@@ -93,6 +93,8 @@ function CreateSession() {
   return (
     <div>
       <h1>Pomodoro Timer</h1>
+      <p className="error">{error}</p>
+      
       <h2>{mode === 'Focus' ? 'Focus Time' : 'Break Time'}</h2>
 
       <div>{formatTime()}</div>
