@@ -45,7 +45,7 @@ async function updateCourseTask(id, taskId, body) {
 }
 
 async function deleteCourseTask(id, taskId){
-    const res = await api.delete(`/courses/${id}/tasks/${tasksId}`)
+    const res = await api.delete(`/courses/${id}/tasks/${taskId}`)
     return res.data
 }
 
