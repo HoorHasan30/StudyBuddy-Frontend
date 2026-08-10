@@ -44,7 +44,7 @@ function EditCourse() {
         setError(false)
 
         const res = await getOneCourse(id)
-        setFormData(res)
+        setFormData(res.title, res.description)
 
       } catch (error) {
         setError(error?.response?.data?.message)
