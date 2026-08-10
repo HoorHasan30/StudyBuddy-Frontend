@@ -1,7 +1,7 @@
 import api from "./api";
 
 async function createSessions(body){
-    const res = await api.post('sessions', body)
+    const res = await api.post('/sessions', body)
     return res.data
 }
 

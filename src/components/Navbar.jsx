@@ -13,7 +13,7 @@ function Navbar() {
       <Link to='/courses'>My Courses</Link>
       <Link to='/projects'>My Projects</Link>
       <Link to='/timetable'>My Timetable</Link>
-      <Link to='/session'>Pomodoro</Link>
+      <Link to='/sessions'>Pomodoro</Link>
 
       <button onClick={logout}>Sign Out</button>
       </>) : ''}
