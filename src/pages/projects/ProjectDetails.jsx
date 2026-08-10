@@ -51,7 +51,12 @@ function ProjectDetails() {
       setProject({
         title: response.title ?? '',
         description: response.description ?? '',
-        deadline: response.deadline ? new Date(response.deadline).toISOString().slice(0, 10) : '',
+        deadline: response.deadline ?
+          new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          }).format(new Date(response.deadline)) : '',
         collaberators: response.collaberators ?? [],
         tasks: response.tasks ?? [],
         owner: response.owner ?? ''
@@ -118,30 +123,43 @@ function ProjectDetails() {
   const allCollaberators = project.collaberators?.length ? project.collaberators : []
   const projectTasks = project.tasks?.length ? project.tasks : []
 
+  const currentUserId = user?._id?.toString?.() ?? ''
+  const projectOwnerId = project.owner?._id?.toString?.() ?? project.owner?.toString?.() ?? ''
+
+
   return (
     <div>
       <h1>{project.title} Details</h1>
 
-      <h3>Add Collaberator: </h3>
+      {projectOwnerId === currentUserId && (
+        <button onClick={() => navigate(`/projects/${projectId}/edit`)}>Edit Project Details</button>
+      )}
 
-      <form autoComplete='off' onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='username'>Username:</label>
-          <input
-            type='text'
-            autoComplete='off'
-            id='username'
-            value={formData.username}
-            name='username'
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button>Add</button>
 
-      </form>
+      {projectOwnerId === currentUserId && (
+        <>
+          <h3>Add Collaberator: </h3>
 
-      <hr></hr>
+          <form autoComplete='off' onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor='username'>Username:</label>
+              <input
+                type='text'
+                autoComplete='off'
+                id='username'
+                value={formData.username}
+                name='username'
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button>Add</button>
+
+          </form>
+
+          <hr></hr>
+        </>
+      )}
 
       <p>{project.description}</p>
 
@@ -154,9 +172,10 @@ function ProjectDetails() {
             <div key={`${u._id}`}>
               {u.username}
 
-              {project.owner?._id?.toString() !== user?._id?.toString() ?
-                <button onClick={() => { handleRemoveCollaberator(u.username) }}>Remove</button>
-                : ''}
+              {projectOwnerId === currentUserId && u._id !== currentUserId && (
+                <button onClick={() => handleRemoveCollaberator(u.username)}>Remove</button>
+              )}
+
             </div>
           ))
           }
@@ -216,15 +235,21 @@ function ProjectDetails() {
 
       </form>
 
+      <hr></hr>
+
       {projectTasks.length ? (
         <div>
           {projectTasks.map((task) => (
             <div key={`${task._id}`}>
-              {task.title}
+              {task.title} - {task.priority} - {new Intl.DateTimeFormat('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+              }).format(new Date(task.deadline))}
 
-              {task.owner?._id?.toString() !== user?._id?.toString() ?
-                <button onClick={() => { handleDeleteTask(task._id) }}>Remove</button>
-                : ''}
+              {task.owner?._id?.toString() === user?._id?.toString() && (
+                <button onClick={() => { handleDeleteTask(task._id) }}>Delete</button>
+              )}
             </div>
           ))
           }
@@ -233,7 +258,6 @@ function ProjectDetails() {
         (<p>No Tasks Yet</p>)
       }
 
-      <button onClick={() => { navigate(`/projects/${projectId}/edit`) }}>Edit Project Details</button>
     </div>
   )
 }
