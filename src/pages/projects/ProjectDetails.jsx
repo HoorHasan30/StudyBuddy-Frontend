@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
-import { getProjectById, addCollaberator, removeCollaberator, createProjectTask, deleteProjectTaskById } from '../../services/projectService'
+import { getProjectById, addCollaberator, removeCollaberator, createProjectTask, deleteProjectTaskById, updateProjectTaskStatus } from '../../services/projectService'
 import { useAuth } from '../../context/AuthContext'
 
 
@@ -39,6 +39,16 @@ function ProjectDetails() {
       await deleteProjectTaskById(projectId, id)
       await loadProjectDetails()
 
+    }
+    catch (err) {
+      setError(err.response.data.message)
+    }
+  }
+
+  async function handleSetTaskStatus(taskId) {
+    try {
+      await updateProjectTaskStatus(projectId, taskId, { status: "Done" })
+      await loadProjectDetails()
     }
     catch (err) {
       setError(err.response.data.message)
@@ -245,10 +255,14 @@ function ProjectDetails() {
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
-              }).format(new Date(task.deadline))}
+              }).format(new Date(task.deadline))} -- {task.status}
 
-              {task.owner?._id?.toString() === user?._id?.toString() && (
-                <button onClick={() => { handleDeleteTask(task._id) }}>Delete</button>
+              {task.owner?._id?.toString() === currentUserId && (
+                <>
+                  <button onClick={() => { handleDeleteTask(task._id) }}>Delete</button>
+
+                  {task.status === 'To Do'? <button onClick={() => { handleSetTaskStatus(task._id) }}>Done</button> : ''}
+                </>
               )}
             </div>
           ))
