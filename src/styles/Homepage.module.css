@@ -1,0 +1,16 @@
+.homeContainer{
+    background-image: url('../images/6.png');
+    background-color: #FBF0D4;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.homeLogo{
+    width: 850px;
+    height: 500px;
+    object-fit: contain;
+    margin-left: 150px;
+
+}
