@@ -44,6 +44,7 @@ function AllProjects() {
   useEffect(
     () => {
       loadProjects()
+      document.title = "My Projects | StudyBuddy";
     },
     []
   )

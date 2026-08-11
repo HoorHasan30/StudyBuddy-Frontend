@@ -30,6 +30,7 @@ function AllCourses() {
 
   useEffect(() => {
     loadCourses()
+    document.title = "My Courses | StudyBuddy";
   }, [])
 
 

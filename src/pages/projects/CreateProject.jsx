@@ -35,6 +35,13 @@ function CreateProject() {
     }
   };
 
+    useEffect(
+    () => {
+    document.title = "New Project| StudyBuddy";
+    },
+    []
+  )
+
   return (
     <main>
       <h1>Create Project</h1>

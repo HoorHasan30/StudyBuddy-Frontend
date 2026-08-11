@@ -97,6 +97,7 @@ function CourseDetails() {
   }
   useEffect(() => {
     loadCourseDetails()
+    document.title = "My Course | StudyBuddy";
   }, [])
 
 

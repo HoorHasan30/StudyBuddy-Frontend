@@ -40,6 +40,13 @@ const SignInForm = ({ }) => {
     }
   };
 
+    useEffect(
+      () => {
+      document.title = "Sign In | StudyBuddy";
+      },
+      []
+    )
+
   return (
     <div className={styles.signInContainer}>
       <h1 id='signIn-Title'>Sign In</h1>

@@ -67,6 +67,13 @@ function EditProject() {
     []
   )
 
+    useEffect(
+    () => {
+    document.title = "Edit Project | StudyBuddy";
+    },
+    []
+  )
+
   if (loading) return <Flex align='center' gap='medium' justify='center'>
     <Spin size='large' description='Loading...' />
   </Flex>
