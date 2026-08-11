@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createSessions, getSessions } from '../../services/sessionService'
 import { Flex, Spin } from 'antd'
 
-import '../../../public/styles/Pomodoro.css'
+import styles from '../../styles/Pomodoro.module.css'
 
 function CreateSession() {
 
@@ -108,10 +108,10 @@ function CreateSession() {
   return (
     <main>
       <h1>Pomodoro Timer</h1>
-      <p className="error">{error}</p>
+      <p className={styles.error}>{error}</p>
 
       <div id='pomodoro-container'>
-        <div className='pomodoro-cards'>
+        <div className={styles['pomodoro-cards']}>
           <h2>{mode === 'Focus' ? 'Focus Time' : 'Break Time'}</h2>
 
           <div id='timer'>
@@ -125,13 +125,13 @@ function CreateSession() {
           </div>
         </div>
 
-        <div className='pomodoro-cards' id='history'>
+        <div className={styles['pomodoro-cards']} id='history'>
 
           <h2>My Pomodoro History</h2>
           {sessionsHistory.length === 0 ? 'You have no pomodoro history yet!' :
             <>
               {sessionsHistory.map(s =>
-                <div key={s._id} className='session'>
+                <div key={s._id} className={styles.session}>
                   <div>
                     <p>{s.duration} Minutes</p>
                   </div>

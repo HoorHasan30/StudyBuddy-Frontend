@@ -1,4 +1,4 @@
-#dashboard-header {
+:global(#dashboard-header) {
     background-color: var(--blue);
     width: 100%;
     padding: 2%;
@@ -6,6 +6,7 @@
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     flex-direction: row;
 
     height: 12rem;
@@ -15,18 +16,18 @@
     box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
 }
 
-#header-img {
+:global(#header-img) {
     display: flex;
     justify-content: center;
     align-items: flex-end;
     flex-direction: column;
 }
 
-#header-img img {
+:global(#header-img img) {
     width: 45%;
 }
 
-#header-text {
+:global(#header-text) {
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -34,21 +35,22 @@
 }
 
 
-#header-text h1 {
+:global(#header-text h1) {
     font-family: 'Nectarine';
     font-size: 4.3rem;
     color: var(--pink);
     -webkit-text-stroke: 0.005rem var(--body);
     text-shadow: 3px 2px 6px #40444870;
     margin: 0;
+    padding: 0;
 }
 
-#header-text p {
+:global(#header-text p) {
     color: var(--darkYellow);
     margin: 0;
 }
 
-#dashboard-cards-container {
+:global(#dashboard-cards-container) {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -81,7 +83,7 @@
     }
 }
 
-#dashboard-deadlines {
+:global(#dashboard-deadlines) {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -127,7 +129,7 @@
     border-radius: 1.5rem;
 }
 
-#task-card{
+:global(#task-card){
     cursor: default;
 }
 
