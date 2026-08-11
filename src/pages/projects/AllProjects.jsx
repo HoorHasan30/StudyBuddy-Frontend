@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { getAllProjects, deleteProject } from '../../services/projectService'
 import { useNavigate } from 'react-router'
+import { Flex, Spin } from 'antd'
+
 
 function AllProjects() {
 
   const navigate = useNavigate()
 
   const [error, setError] = useState(false)
+
+  const [loading, setLoading] = useState(true)
+
 
   const [projects, setProjects] = useState([])
 
@@ -23,11 +28,16 @@ function AllProjects() {
 
   async function loadProjects() {
     try {
+      setLoading(true)
+      setError(false)
+
       const response = await getAllProjects()
       setProjects(response)
     }
     catch (err) {
       setError(err.response.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -38,6 +48,10 @@ function AllProjects() {
     []
   )
 
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
   if (projects.length === 0) {
     return <p>You Have No Projects Yet!</p>
   }
@@ -47,7 +61,7 @@ function AllProjects() {
       <h1>My Projects</h1>
       <p className="error">{error}</p>
 
-      <button onClick={() => {navigate('/projects/create')}}>Create Project</button>
+      <button onClick={() => { navigate('/projects/create') }}>Create Project</button>
 
       {projects.map(p =>
         <main key={p._id}>

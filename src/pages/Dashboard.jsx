@@ -2,6 +2,8 @@ import { useAuth } from "../context/AuthContext"
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router'
 
+import { Flex, Spin } from 'antd'
+
 import { getProjectsDeadline, getAllProjects } from '../services/projectService'
 import { getAllCourses } from '../services/courseService'
 import { getTasksDeadline } from '../services/tasksService'
@@ -9,6 +11,7 @@ import { getSessions } from '../services/sessionService'
 
 function Dashboard() {
 
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   const { user } = useAuth()
@@ -24,6 +27,9 @@ function Dashboard() {
 
   async function loadData() {
     try {
+      setLoading(true)
+      setError(false)
+
       const projectRes = await getAllProjects()
       setProjects(projectRes.length)
 
@@ -35,11 +41,16 @@ function Dashboard() {
     }
     catch (err) {
       setError(err.response.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
   async function loadDeadlines() {
     try {
+      setLoading(true)
+      setError(false)
+
       const projectsDeadlines = await getProjectsDeadline()
       setProjectsDeadline(projectsDeadlines)
 
@@ -48,6 +59,8 @@ function Dashboard() {
     }
     catch (err) {
       setError(err.response.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -55,9 +68,13 @@ function Dashboard() {
     () => {
       loadData()
       loadDeadlines()
-    },[]
+    }, []
   )
 
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
   return (
     <main>
       <h1>Welcome {user.username}</h1>

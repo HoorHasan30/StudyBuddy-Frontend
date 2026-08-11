@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { createSessions, getSessions } from '../../services/sessionService'
+import { Flex, Spin } from 'antd'
+
 
 function CreateSession() {
 
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
   const [time, setTime] = useState(25 * 60) //25 min
@@ -49,12 +52,18 @@ function CreateSession() {
 
   async function loadSessions() {
     try {
+      setLoading(true)
+      setError(false)
+
       const response = await getSessions()
       setSessionsHistory(response)
       setError('')
     }
     catch (err) {
       setError(err.response.data.message)
+    }
+    finally {
+      setLoading(false)
     }
   }
 
@@ -89,6 +98,11 @@ function CreateSession() {
       setCycles((prev) => prev + 1)
     }
   }, [time, isRunning, mode])
+
+    if (loading) return <Flex align='center' gap='medium' justify='center'>
+      <Spin size='large' description='Loading...' />
+    </Flex>
+    if (error) return <p>ERROR: {error}</p>
 
   return (
     <main>
