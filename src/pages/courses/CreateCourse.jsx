@@ -40,6 +40,8 @@ function CreateCourse() {
     <main>
 
       <h1>Create Course</h1>
+      <p className='error'>{error}</p>
+
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input type="text" name='title' id='title' onChange={handleChange} value={formData.title} required/>
@@ -50,7 +52,7 @@ function CreateCourse() {
         <button>Create Course</button>
         <button type='button' onClick={() => {
           navigate('/courses')
-        }}>Back</button>
+        }}>Cancel</button>
 
       </form>
     </main>

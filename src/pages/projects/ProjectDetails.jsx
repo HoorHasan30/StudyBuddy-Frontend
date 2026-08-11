@@ -10,7 +10,7 @@ function ProjectDetails() {
   const navigate = useNavigate()
 
   const [loading, setLoading] = useState(true)
-  
+
   const [error, setError] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -151,12 +151,13 @@ function ProjectDetails() {
 
   return (
     <main>
+      <button onClick={() => { navigate('/projects') }}>Back</button>
+
       <h1>{project.title} Details</h1>
 
       {projectOwnerId === currentUserId && (
         <button onClick={() => navigate(`/projects/${projectId}/edit`)}>Edit Project Details</button>
       )}
-
 
       {projectOwnerId === currentUserId && (
         <>
@@ -273,7 +274,7 @@ function ProjectDetails() {
                 <>
                   <button onClick={() => { handleDeleteTask(task._id) }}>Delete</button>
 
-                  {task.status === 'To Do'? <button onClick={() => { handleSetTaskStatus(task._id) }}>Done</button> : ''}
+                  {task.status === 'To Do' ? <button onClick={() => { handleSetTaskStatus(task._id) }}>Done</button> : ''}
                 </>
               )}
             </div>
