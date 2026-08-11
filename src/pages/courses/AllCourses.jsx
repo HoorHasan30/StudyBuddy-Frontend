@@ -50,7 +50,7 @@ function AllCourses() {
    if(courses.length === 0) return <p>No courses to show yet</p>
 
   return (
-    <div>
+    <main>
 
       <h1>My Courses</h1>
         <button onClick={()=>{
@@ -73,7 +73,7 @@ function AllCourses() {
       )}
 
 
-    </div>
+    </main>
   )
 }
 

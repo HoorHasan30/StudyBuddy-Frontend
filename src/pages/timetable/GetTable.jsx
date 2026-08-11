@@ -51,17 +51,17 @@ function GetTable() {
   </Flex>
   if (error) return <p>ERROR: {error}</p>
   if (!timeTable) return (
-    <div>
+    <main>
       <p>No timetable to show yet</p>
       <button onClick={() => {
         navigate('/timetable/create')
       }}>Add TimeTable</button>
-    </div>
+    </main>
 
   )
 
   return (
-    <div>
+    <main>
       <h1>My TimeTable</h1>
 
       <button onClick={() => {
@@ -70,7 +70,7 @@ function GetTable() {
 
       <img src={timeTable.tableImage.url} alt="Current Timetable" />
 
-    </div>
+    </main>
   )
 }
 

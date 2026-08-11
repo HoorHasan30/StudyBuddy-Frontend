@@ -37,7 +37,7 @@ function CreateCourse() {
   }
 
   return (
-    <div>
+    <main>
 
       <h1>Create Course</h1>
       <form onSubmit={handleSubmit}>
@@ -53,7 +53,7 @@ function CreateCourse() {
         }}>Back</button>
 
       </form>
-    </div>
+    </main>
   )
 }
 

@@ -105,7 +105,7 @@ function CourseDetails() {
   </Flex>
   if (error) return <p>ERROR: {error}</p>
   return (
-    <div>
+    <main>
       {course && (
         <>
           {courseOwnerId === currentUserId && (
@@ -177,7 +177,7 @@ function CourseDetails() {
         </>
 
       )}
-    </div>
+    </main>
   )
 }
 

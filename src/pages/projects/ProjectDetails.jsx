@@ -138,7 +138,7 @@ function ProjectDetails() {
 
 
   return (
-    <div>
+    <main>
       <h1>{project.title} Details</h1>
 
       {projectOwnerId === currentUserId && (
@@ -272,7 +272,7 @@ function ProjectDetails() {
         (<p>No Tasks Yet</p>)
       }
 
-    </div>
+    </main>
   )
 }
 
