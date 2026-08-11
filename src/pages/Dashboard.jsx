@@ -7,6 +7,8 @@ import { getAllCourses } from '../services/courseService'
 import { getTasksDeadline } from '../services/tasksService'
 import { getSessions } from '../services/sessionService'
 
+import '../../public/styles/Dashboard.css'
+
 function Dashboard() {
 
   const [error, setError] = useState('')
@@ -55,57 +57,91 @@ function Dashboard() {
     () => {
       loadData()
       loadDeadlines()
-    },[]
+    }, []
   )
 
   return (
     <main>
-      <h1>Welcome {user.username}</h1>
+      <div id='dashboard-header'>
+        <div id='header-text'>
+          <h1>Welcome {user.username} !</h1>
+          <p>Plan smarter, Study better, & Succeed together</p>
+        </div>
+        <div id='header-img'>
+          <img src="../src/assets/sitting-penguin.png" alt="penguin" />
+        </div>
+      </div>
+
       <p className="error">{error}</p>
 
-      <p>{projects}</p>
-      <h2>Projects</h2>
+      <div id='dashboard-cards-container'>
+        <div className='dashboard-cards'>
+          <h2>{projects}</h2>
+          <p>Projects</p>
+        </div>
 
-      <p>{courses}</p>
-      <h2>Courses</h2>
+        <div className='dashboard-cards'>
+          <h2>{courses}</h2>
+          <p>Courses</p>
+        </div>
 
-      <p>{sessions}</p>
-      <h2>Study Sessions</h2>
+        <div className='dashboard-cards'>
+          <h2>{sessions}</h2>
+          <p>Study Sessions</p>
+        </div>
+      </div>
 
+      <div id='dashboard-deadlines'>
 
-      <h2>Projects Deadlines</h2>
+        <div className='deadlines'>
+          <h2>Projects Deadlines</h2>
 
-      {projectsDeadline.length === 0 ? 'You have no upcoming project deadlines' :
-        <>
-          {projectsDeadline.map(p =>
-            <div key={p._id} onClick={() => { navigate(`/projects/${p._id}`) }}>
-              <p>{p.title}</p>
-              <p>{new Intl.DateTimeFormat('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-              }).format(new Date(p.deadline))}</p>
-            </div>
-          )}
-        </>
-      }
+          {projectsDeadline.length === 0 ? 'You have no upcoming project deadlines' :
+            <>
+              {projectsDeadline.map(p =>
+                <div key={p._id} onClick={() => { navigate(`/projects/${p._id}`) }} className="deadline-card">
+                  <div>
+                    <p><span className="point">●</span> {p.title}</p>
+                  </div>
+                  <div>
+                    <p>
+                      {new Intl.DateTimeFormat('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                      }).format(new Date(p.deadline))}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </>
+          }
+        </div>
 
-      <h2>Tasks Deadlines</h2>
+        <div className='deadlines'>
+          <h2>Tasks Deadlines</h2>
 
-      {tasksDeadline.length === 0 ? 'You have no upcoming task deadlines' :
-        <>
-          {tasksDeadline.map(t =>
-            <div key={t._id} >
-              <p>{t.title}</p>
-              <p>{new Intl.DateTimeFormat('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-              }).format(new Date(t.deadline))}</p>
-            </div>
-          )}
-        </>
-      }
+          {tasksDeadline.length === 0 ? 'You have no upcoming task deadlines' :
+            <>
+              {tasksDeadline.map(t =>
+                <div key={t._id} className="deadline-card" id="task-card">
+                  <div>
+                    <p><span className="point">●</span> {t.title}</p>
+                  </div>
+                  <div>
+                    <p>{new Intl.DateTimeFormat('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric'
+                    }).format(new Date(t.deadline))}</p>
+                  </div>
+                </div>
+              )}
+            </>
+          }
+        </div>
+      </div>
+
     </main>
   )
 }
