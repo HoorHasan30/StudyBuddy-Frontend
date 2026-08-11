@@ -1,0 +1,99 @@
+#pomodoro-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: row;
+
+    width: 100%;
+
+    margin: 1%;
+}
+
+.pomodoro-cards{
+    width: 49%;
+    min-height: 5rem;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#history h2{
+    margin-bottom: 3.5%;
+}
+
+.session{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 2rem;
+
+    width: 70%;
+
+    margin: 1%;
+
+    box-sizing: border-box;
+    background-color: #f0c4c5be;
+    border-radius: 2rem;
+
+    color: var(--dark);
+}
+
+.pomodoro-cards h2{
+    color: var(--blue);
+    font-size: 2rem;
+    margin: 0;
+}
+
+#timer{
+    height: 22rem;
+    width: 22rem;
+    background-color: var(--darkYellow);
+    border-radius: 50%;
+
+    outline: dashed var(--blue) ;
+    outline-offset:-10px;
+
+    margin: 3.5%;
+    padding: 2%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#timer img {
+    width: 60%;
+}
+
+#timer h3 {
+    font-size: 2rem;
+    color: var(--darkPink);
+    margin: 0;
+}
+
+#btns{
+    width: 30%;
+    margin: 1%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#btns button {
+    background-color: var(--pink);
+    border: none;
+    border-radius: 1rem;
+
+    padding: 2%;
+    width: 5rem;
+
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+

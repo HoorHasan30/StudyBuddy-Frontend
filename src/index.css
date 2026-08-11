@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Alice&family=Cinzel+Decorative&family=Cinzel:wght@400..900&family=Exo:ital,wght@0,100..900;1,100..900&family=Henny+Penny&family=IM+Fell+English:ital@0;1&family=Londrina+Shadow&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Unkempt&display=swap');
 
 @font-face {
-  font-family: 'Nectarine';
-  src: url('./assets/fonts/Nectarine.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
+    font-family: 'Nectarine';
+    src: url('./assets/fonts/Nectarine.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
 }
 
 * {
@@ -25,8 +25,11 @@ html {
     color: var(--dark);
 }
 
-button{
+button {
     font-family: 'Exo';
+}
+button:hover{
+    cursor: pointer;
 }
 
 .error {
@@ -92,7 +95,7 @@ nav {
 
 .nav-link.active {
     background-color: var(--body);
-    border-radius: 1rem 0 0 1rem ;
+    border-radius: 1rem 0 0 1rem;
     color: var(--darkPink);
     font-weight: 600;
 }
@@ -110,4 +113,13 @@ main {
     text-align: center;
 
     height: 100%;
+}
+
+main h1 {
+    font-family: 'Nectarine';
+    font-size: 4.5rem;
+    color: var(--pink);
+    -webkit-text-stroke: 0.005rem var(--body);
+    text-shadow: 3px 2px 6px #40444870;
+    margin: 0;
 }
