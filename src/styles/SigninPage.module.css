@@ -5,19 +5,18 @@
     --pink: #f0c4c5;
     --darkPink: #c48490;
     --blue: #6e91aa;
-    --transparent:  #fefbf18c;
+    --transparent: #fefbf18c;
 }
 
-.signUpContainer {
-    background-image: url('../src/images/4.png');
+.signInContainer {
+    background-image: url('../src/images/5.png');
     background-color: #FBF0D4;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     height: 100vh;
+    text-align: right;
 
-    
-    
 }
 
 h1 {
@@ -28,34 +27,36 @@ h1 {
     text-shadow: 3px 2px 6px #40444870;
     margin: 0;
     padding-top: 2rem;
-    padding-left: 12rem;
+    margin-right: 12rem;
 }
 
-.formContainer{
+
+.formContainer {
     display: inline-flex;
     background-color: var(--transparent);
 
     border-radius: 10px;
     margin-top: 4rem;
-    margin-left: 7rem;
+    margin-left: auto;
+    margin-right: 7rem;
     padding: 3rem;
 
 }
 
-.formElement{
+.formElement {
     display: flex;
+    text-align: right;
     gap: 10px;
     margin-bottom: 1rem;
 }
 
-
 .btnContainer {
     display: flex;
     justify-content: center;
-    gap:1rem;
+    gap: 1rem;
 }
 
-.btn{
+.btn {
     background-color: var(--darkPink);
     border: none;
     border-radius: 14px;
@@ -64,19 +65,17 @@ h1 {
     color: var(--dark);
 }
 
-.btn:hover{
+.btn:hover {
     background-color: var(--pink);
 }
 
-
-.formInput{
+.formInput {
     border: none;
     border-radius: 14px;
     outline: none;
 
 }
 
-.formInput:focus
-{
-        border: var(--darkYellow) 2px solid;
+.formInput:focus {
+    border: var(--darkYellow) 2px solid;
 }
