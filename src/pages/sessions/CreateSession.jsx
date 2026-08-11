@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { createSessions, getSessions } from '../../services/sessionService'
 import { Flex, Spin } from 'antd'
 
+import '../../../public/styles/Pomodoro.css'
 
 function CreateSession() {
 
@@ -99,43 +100,57 @@ function CreateSession() {
     }
   }, [time, isRunning, mode])
 
-    if (loading) return <Flex align='center' gap='medium' justify='center'>
-      <Spin size='large' description='Loading...' />
-    </Flex>
-    if (error) return <p>ERROR: {error}</p>
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
 
   return (
     <main>
       <h1>Pomodoro Timer</h1>
       <p className="error">{error}</p>
-      
-      <h2>{mode === 'Focus' ? 'Focus Time' : 'Break Time'}</h2>
 
-      <div>{formatTime()}</div>
+      <div id='pomodoro-container'>
+        <div className='pomodoro-cards'>
+          <h2>{mode === 'Focus' ? 'Focus Time' : 'Break Time'}</h2>
 
-      <div>
-        <button onClick={() => { setIsRunning(!isRunning) }}>{isRunning ? 'Pause' : 'Start'}</button>
-        <button onClick={() => { handleReset() }}>Reset</button>
+          <div id='timer'>
+            <img src="../../src/assets/penguin.png" alt="" />
+            <h3>{formatTime()}</h3>
+          </div>
+
+          <div id='btns'>
+            <button onClick={() => { setIsRunning(!isRunning) }}>{isRunning ? 'Pause' : 'Start'}</button>
+            <button onClick={() => { handleReset() }}>Reset</button>
+          </div>
+        </div>
+
+        <div className='pomodoro-cards' id='history'>
+
+          <h2>My Pomodoro History</h2>
+          {sessionsHistory.length === 0 ? 'You have no pomodoro history yet!' :
+            <>
+              {sessionsHistory.map(s =>
+                <div key={s._id} className='session'>
+                  <div>
+                    <p>{s.duration} Minutes</p>
+                  </div>
+                  <div>
+                    <p>
+                      {new Intl.DateTimeFormat('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                      }).format(new Date(s.createdAt))}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </>
+          }
+        </div>
+
       </div>
-
-      <h2>My Pomodoro History</h2>
-      {sessionsHistory.length === 0 ? 'You have no pomodoro history yet!' :
-        <>
-          {sessionsHistory.map(s =>
-            <div key={s._id}>
-              <p>{s.duration} Minutes</p>
-              <p>
-                {new Intl.DateTimeFormat('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-              }).format(new Date(s.createdAt))}
-              </p>
-            </div>
-          )}
-        </>
-      }
-
     </main>
   )
 }
