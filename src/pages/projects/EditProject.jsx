@@ -60,7 +60,7 @@ function EditProject() {
   )
 
   return (
-    <div>
+    <main>
       <h1>Edit Project Details</h1>
       <p className='error'>{error}</p>
 
@@ -109,7 +109,7 @@ function EditProject() {
 
       </form>
 
-    </div>
+    </main>
   )
 }
 

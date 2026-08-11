@@ -59,7 +59,7 @@ function Dashboard() {
   )
 
   return (
-    <div>
+    <main>
       <h1>Welcome {user.username}</h1>
       <p className="error">{error}</p>
 
@@ -106,7 +106,7 @@ function Dashboard() {
           )}
         </>
       }
-    </div>
+    </main>
   )
 }
 

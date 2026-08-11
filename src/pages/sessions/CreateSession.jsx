@@ -91,7 +91,7 @@ function CreateSession() {
   }, [time, isRunning, mode])
 
   return (
-    <div>
+    <main>
       <h1>Pomodoro Timer</h1>
       <p className="error">{error}</p>
       
@@ -110,7 +110,8 @@ function CreateSession() {
           {sessionsHistory.map(s =>
             <div key={s._id}>
               <p>{s.duration} Minutes</p>
-              <p>{new Intl.DateTimeFormat('en-US', {
+              <p>
+                {new Intl.DateTimeFormat('en-US', {
                 month: 'short',
                 day: 'numeric',
                 year: 'numeric'
@@ -121,7 +122,7 @@ function CreateSession() {
         </>
       }
 
-    </div>
+    </main>
   )
 }
 

@@ -66,7 +66,7 @@ function EditCourse() {
    if(error) return <p>ERROR: {error}</p>
 
   return (
-    <div>
+    <main>
       <h1>EditCourse</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
@@ -81,7 +81,7 @@ function EditCourse() {
         }}>Back</button>
 
       </form>
-    </div>
+    </main>
   )
 }
 

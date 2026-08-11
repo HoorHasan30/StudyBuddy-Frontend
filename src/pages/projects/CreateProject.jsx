@@ -36,7 +36,7 @@ function CreateProject() {
   };
 
   return (
-    <div>
+    <main>
       <h1>Create Project</h1>
 
       <p className='error'>{error}</p>
@@ -85,7 +85,7 @@ function CreateProject() {
         </div>
 
       </form>
-    </div>
+    </main>
   )
 }
 

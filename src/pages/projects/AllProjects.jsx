@@ -43,14 +43,14 @@ function AllProjects() {
   }
 
   return (
-    <div>
+    <main>
       <h1>My Projects</h1>
       <p className="error">{error}</p>
 
       <button onClick={() => {navigate('/projects/create')}}>Create Project</button>
 
       {projects.map(p =>
-        <div key={p._id}>
+        <main key={p._id}>
           <h3>{p.title}</h3>
 
           <p>{new Intl.DateTimeFormat('en-US', {
@@ -61,10 +61,10 @@ function AllProjects() {
 
           <button onClick={() => { handleDeleteProject(p._id) }}>Delete</button>
           <button onClick={() => { navigate(`/projects/${p._id}`) }}>View Details</button>
-        </div>
+        </main>
       )}
 
-    </div>
+    </main>
   )
 }
 

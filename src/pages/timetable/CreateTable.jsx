@@ -49,7 +49,7 @@ function CreateTable() {
   }
 
   return (
-    <div>
+    <main>
       <h1>Create TimeTable</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
 
@@ -62,7 +62,7 @@ function CreateTable() {
       {image && (
         <img src={image} alt="Current TimaeTable" />
       )}
-    </div>
+    </main>
   )
 }
 

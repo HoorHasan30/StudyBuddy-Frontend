@@ -1,7 +1,104 @@
-.error{
+@import url('https://fonts.googleapis.com/css2?family=Alice&family=Cinzel+Decorative&family=Cinzel:wght@400..900&family=Exo:ital,wght@0,100..900;1,100..900&family=Henny+Penny&family=IM+Fell+English:ital@0;1&family=Londrina+Shadow&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=SN+Pro:ital,wght@0,200..900;1,200..900&family=Unkempt&display=swap');
+
+* {
+    --body: #fefbf1;
+    --darkYellow: #fbf0d4;
+    --dark: #404448;
+    --pink: #f0c4c5;
+    --darkPink: #c48490;
+    --blue: #6e91aa;
+}
+
+body,
+html {
+    font-family: 'Exo';
+
+    margin: 0;
+    background-color: var(--body);
+    color: var(--dark);
+}
+
+button{
+    font-family: 'Exo';
+}
+
+.error {
     color: red
 }
 
-nav a{
-    margin-right: 10px
+nav {
+    background-color: var(--darkYellow);
+    width: 13%;
+    height: 100%;
+
+    top: 0;
+    margin-right: 1%;
+
+    box-sizing: border-box;
+
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+#nav-up,
+#nav-down {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#nav-up img {
+    width: 70%;
+    margin: 1%;
+}
+
+#nav-down {
+    margin-bottom: 10%;
+    width: 100%;
+}
+
+#sign-out-btn {
+    background-color: var(--blue);
+    border: none;
+    border-radius: 1rem;
+    color: var(--body);
+    width: 80%;
+    padding: 3%;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+
+    padding: 5%;
+    margin: 5%;
+
+    font-size: 0.9rem;
+
+    width: 100%;
+}
+
+.nav-link.active {
+    background-color: var(--body);
+    border-radius: 1rem 0 0 1rem ;
+    color: var(--darkPink);
+    font-weight: 600;
+}
+
+main {
+    margin-left: 13%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    height: 100%;
 }
