@@ -36,6 +36,12 @@ function CreateCourse() {
     }
   }
 
+    useEffect(
+    () => {
+    document.title = "New Course | StudyBuddy";
+    },
+    []
+  )
   return (
     <main>
 

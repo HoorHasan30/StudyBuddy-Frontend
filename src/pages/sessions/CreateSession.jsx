@@ -69,7 +69,10 @@ function CreateSession() {
   }
 
   useEffect(
-    () => { loadSessions() },
+    () => { 
+      loadSessions() 
+      document.title = "Pomodoro | StudyBuddy";
+    },
     []
   )
 

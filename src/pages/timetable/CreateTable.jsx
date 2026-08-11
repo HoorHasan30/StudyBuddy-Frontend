@@ -48,6 +48,12 @@ function CreateTable() {
     }
   }
 
+    useEffect(
+    () => {
+    document.title = "Add Timetable | StudyBuddy";
+    },
+    []
+  )
   return (
     <main>
       <h1>Create TimeTable</h1>

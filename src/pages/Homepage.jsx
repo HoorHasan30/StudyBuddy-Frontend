@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styles from '../styles/Homepage.module.css'
 import { Link } from 'react-router'
 
 function Homepage() {
+
+    useEffect(
+    () => {
+    document.title = "StudyBuddy";
+    },
+    []
+  )
+
   return (
     <div className={styles.homeContainer}>
 

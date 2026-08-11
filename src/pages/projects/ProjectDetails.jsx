@@ -134,6 +134,7 @@ function ProjectDetails() {
   useEffect(
     () => {
       loadProjectDetails()
+      document.title = "My Project | StudyBuddy";
     },
     []
   )

@@ -70,6 +70,7 @@ function Dashboard() {
     () => {
       loadData()
       loadDeadlines()
+      document.title = "Dashboard | StudyBuddy";
     }, []
   )
 

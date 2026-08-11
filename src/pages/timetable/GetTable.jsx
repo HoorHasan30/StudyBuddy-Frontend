@@ -44,6 +44,7 @@ function GetTable() {
 
   useEffect(() => {
     loadTimeTable()
+    document.title = "My Timetable | StudyBuddy";
   }, [])
 
   if (loading) return <Flex align='center' gap='medium' justify='center'>

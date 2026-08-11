@@ -59,6 +59,12 @@ function EditCourse() {
 
   }, [])
 
+    useEffect(
+    () => {
+    document.title = "Edit Course | StudyBuddy";
+    },
+    []
+  )
 
   if (loading) return <Flex align='center' gap='medium' justify='center'>
         <Spin size='large' description='Loading...' />

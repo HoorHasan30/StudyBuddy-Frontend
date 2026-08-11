@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../services/authService";
 import styles from '../styles/SignupPage.module.css'
+import { use } from "react";
 
 function Signup() {
   const navigate = useNavigate();
@@ -37,6 +38,13 @@ function Signup() {
   function isFormInvalid() {
     return !(username && password && password === passwordConf);
   };
+
+  useEffect(
+    () => {
+    document.title = "Sign Up | StudyBuddy";
+    },
+    []
+  )
 
   return (
 
