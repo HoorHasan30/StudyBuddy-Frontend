@@ -49,9 +49,16 @@ function App() {
 
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Homepage />} />
-          <Route path="/sign-up" element={<SignupPage />} />
-          <Route path="/sign-in" element={<SignInPage />} />
         </Route>
+            <Route path="/sign-up" element={<RootLayout />} >
+            <Route index element={<SignupPage />} />
+            </Route>
+
+          <Route path="/sign-in" element={<RootLayout />} >
+                      <Route index element={<SignInPage />} />
+
+          </Route>
+
 
 
         <Route element={<LayoutWithNavbar />}>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { signUp } from "../services/authService";
+import styles from '../styles/SignupPage.module.css'
 
 function Signup() {
   const navigate = useNavigate();
@@ -38,13 +39,16 @@ function Signup() {
   };
 
   return (
-    <main>
+    
+    <div className={styles.signUpContainer}>
       <h1>Sign Up</h1>
       <p className="error">{error}</p>
+      <div className={styles.formContainer}>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className={styles.formElement}>
           <label htmlFor="username">Username:</label>
-          <input
+          <input 
+            className={styles.formInput}
             type="text"
             id="username"
             value={username}
@@ -53,9 +57,10 @@ function Signup() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formElement}>
           <label htmlFor="password">Password:</label>
           <input
+            className={styles.formInput}
             type="password"
             id="password"
             value={password}
@@ -64,9 +69,10 @@ function Signup() {
             required
           />
         </div>
-        <div>
+        <div className={styles.formElement}>
           <label htmlFor="confirm">Confirm Password:</label>
           <input
+            className={styles.formInput}
             type="password"
             id="confirm"
             value={passwordConf}
@@ -75,12 +81,13 @@ function Signup() {
             required
           />
         </div>
-        <div>
-          <button disabled={isFormInvalid() || submitting}>{submitting ? 'Signing up...' : 'Sign Up'}</button>
-          <button onClick={() => navigate("/")}>Cancel</button>
+        <div className={styles.btnContainer}> 
+          <button className={styles.btn} disabled={isFormInvalid() || submitting}>{submitting ? 'Signing up...' : 'Sign Up'}</button>
+          <button className={styles.btn} onClick={() => navigate("/")}>Cancel</button>
         </div>
       </form>
-    </main>
+      </div>
+    </div>
   );
 }
 export default Signup;
