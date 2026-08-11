@@ -42,7 +42,7 @@ const SignInForm = ({ }) => {
 
   return (
     <div className={styles.signInContainer}>
-      <h1>Sign In</h1>
+      <h1 id='signIn-Title'>Sign In</h1>
       <p className='error'>{error}</p>
       <div className={styles.formContainer}>
 

@@ -15,12 +15,10 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
-
-    
-    
 }
 
-h1 {
+
+:global(#signUp-Title){
     font-family: 'Nectarine';
     font-size: 4.5rem;
     color: var(--pink);
