@@ -126,7 +126,7 @@ function CourseDetails() {
           <form onSubmit={handleSubmit}>
             <div>
               <label htmlFor="title">Task Title:</label>
-              <input type="text" name='title' id='title' onChange={handleChange} />
+              <input type='text' autoComplete='off' name='title' id='title' onChange={handleChange} />
             </div>
 
             <div>
@@ -145,7 +145,7 @@ function CourseDetails() {
 
             <div>
               <label htmlFor="deadline">Task Deadline:</label>
-              <input type="date" name='deadline' id='deadline' onChange={handleChange} />
+              <input type='date' autoComplete='off' name='deadline' id='deadline' onChange={handleChange} />
 
             </div>
 
@@ -156,7 +156,7 @@ function CourseDetails() {
 
 
           {courseTasks.map((task) => (
-            <div key={task._id}>
+            <div key={`${task._id}`}>
               {task.title} - {task.priority} - {new Intl.DateTimeFormat('en-US', {
                 month: 'short',
                 day: 'numeric',
