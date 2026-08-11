@@ -19,7 +19,7 @@
 
 }
 
-h1 {
+:global(#signIn-Title){
     font-family: 'Nectarine';
     font-size: 4.5rem;
     color: var(--pink);
@@ -29,7 +29,6 @@ h1 {
     padding-top: 2rem;
     margin-right: 12rem;
 }
-
 
 .formContainer {
     display: inline-flex;

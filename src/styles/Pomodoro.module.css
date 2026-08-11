@@ -1,4 +1,4 @@
-#pomodoro-container{
+:global(#pomodoro-container){
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -19,7 +19,7 @@
     flex-direction: column;
 }
 
-#history h2{
+:global(#history h2){
     margin-bottom: 3.5%;
 }
 
@@ -47,7 +47,7 @@
     margin: 0;
 }
 
-#timer{
+:global(#timer){
     height: 22rem;
     width: 22rem;
     background-color: var(--darkYellow);
@@ -65,17 +65,17 @@
     flex-direction: column;
 }
 
-#timer img {
+:global(#timer img) {
     width: 60%;
 }
 
-#timer h3 {
+:global(#timer h3) {
     font-size: 2rem;
     color: var(--darkPink);
     margin: 0;
 }
 
-#btns{
+:global(#btns){
     width: 30%;
     margin: 1%;
 
@@ -84,7 +84,7 @@
     align-items: center;
 }
 
-#btns button {
+:global(#btns button) {
     background-color: var(--pink);
     border: none;
     border-radius: 1rem;

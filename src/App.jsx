@@ -40,6 +40,8 @@ import { useAuth } from "./context/AuthContext";
 import RootLayout from "./components/RootLayout";
 import LayoutWithNavbar from "./components/LayoutWithoutNavbar";
 
+import PageNotFound from "./pages/PageNotFound";
+
 function App() {
   return (
     <div>
@@ -49,17 +51,16 @@ function App() {
 
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Homepage />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
-            <Route path="/sign-up" element={<RootLayout />} >
-            <Route index element={<SignupPage />} />
-            </Route>
 
-          <Route path="/sign-in" element={<RootLayout />} >
-                      <Route index element={<SignInPage />} />
+        <Route path="/sign-up" element={<RootLayout />} >
+          <Route index element={<SignupPage />} />
+        </Route>
 
-          </Route>
-
-
+        <Route path="/sign-in" element={<RootLayout />} >
+          <Route index element={<SignInPage />} />
+        </Route>
 
         <Route element={<LayoutWithNavbar />}>
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -75,8 +76,6 @@ function App() {
           <Route path="/courses/:id/tasks/:taskId" element={<ProtectedRoute><TaskDetails /></ProtectedRoute>} />
           <Route path="/courses/:id/tasks/:taskId/edit" element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
 
-
-
           <Route path="/timetable" element={<ProtectedRoute><GetTable /></ProtectedRoute>} />
           <Route path="/timetable/create" element={<ProtectedRoute><CreateTable /></ProtectedRoute>} />
 
@@ -91,7 +90,6 @@ function App() {
           <Route path="/projects/:projectId/tasks/create" element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
           <Route path="/projects/:projectId/tasks/:taskId" element={<ProtectedRoute><TaskDetails /></ProtectedRoute>} />
           <Route path="/projects/:projectId/tasks/:taskId/edit" element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
-
         </Route>
 
       </Routes>

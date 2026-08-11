@@ -44,7 +44,7 @@ function EditCourse() {
         setError(false)
 
         const res = await getOneCourse(id)
-        setFormData(res.title, res.description)
+        setFormData(res)
 
       } catch (error) {
         setError(error?.response?.data?.message)
@@ -75,10 +75,10 @@ function EditCourse() {
         <label htmlFor="description">Description:</label>
         <textarea name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
 
-        <button>Edit Course</button>
+        <button>Save</button>
         <button type='button' onClick={()=>{
           navigate(`/courses/${id}`)
-        }}>Back</button>
+        }}>Cancel</button>
 
       </form>
     </main>

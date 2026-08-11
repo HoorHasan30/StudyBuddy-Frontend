@@ -9,7 +9,7 @@ import { getAllCourses } from '../services/courseService'
 import { getTasksDeadline } from '../services/tasksService'
 import { getSessions } from '../services/sessionService'
 
-import '../../public/styles/Dashboard.css'
+import styles from '../styles/Dashboard.module.css'
 
 function Dashboard() {
 
@@ -89,20 +89,20 @@ function Dashboard() {
         </div>
       </div>
 
-      <p className="error">{error}</p>
+      <p className={styles.error}>{error}</p>
 
       <div id='dashboard-cards-container'>
-        <div className='dashboard-cards'>
+        <div className={styles['dashboard-cards']}>
           <h2>{projects}</h2>
           <p>Projects</p>
         </div>
 
-        <div className='dashboard-cards'>
+        <div className={styles['dashboard-cards']}>
           <h2>{courses}</h2>
           <p>Courses</p>
         </div>
 
-        <div className='dashboard-cards'>
+        <div className={styles['dashboard-cards']}>
           <h2>{sessions}</h2>
           <p>Study Sessions</p>
         </div>
@@ -110,13 +110,13 @@ function Dashboard() {
 
       <div id='dashboard-deadlines'>
 
-        <div className='deadlines'>
+        <div className={styles.deadlines}>
           <h2>Projects Deadlines</h2>
 
           {projectsDeadline.length === 0 ? 'You have no upcoming project deadlines' :
             <>
               {projectsDeadline.map(p =>
-                <div key={p._id} onClick={() => { navigate(`/projects/${p._id}`) }} className="deadline-card">
+                <div key={p._id} onClick={() => { navigate(`/projects/${p._id}`) }} className={styles['deadline-card']}>
                   <div>
                     <p><span className="point">●</span> {p.title}</p>
                   </div>
@@ -135,15 +135,15 @@ function Dashboard() {
           }
         </div>
 
-        <div className='deadlines'>
+        <div className={styles.deadlines}>
           <h2>Tasks Deadlines</h2>
 
           {tasksDeadline.length === 0 ? 'You have no upcoming task deadlines' :
             <>
               {tasksDeadline.map(t =>
-                <div key={t._id} className="deadline-card" id="task-card">
+                <div key={t._id} className={styles['deadline-card']} id="task-card">
                   <div>
-                    <p><span className="point">●</span> {t.title}</p>
+                    <p><span className={styles.point}>●</span> {t.title}</p>
                   </div>
                   <div>
                     <p>{new Intl.DateTimeFormat('en-US', {

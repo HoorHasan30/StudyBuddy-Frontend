@@ -80,7 +80,7 @@ function CreateProject() {
         </div>
 
         <div>
-          <button>Create</button>
+          <button>Create Project</button>
           <button onClick={() => navigate('/projects')}>Cancel</button>
         </div>
 

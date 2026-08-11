@@ -108,16 +108,19 @@ function CourseDetails() {
     <main>
       {course && (
         <>
-          {courseOwnerId === currentUserId && (
-
-            <button onClick={() => {
-              navigate(`/courses/${course._id}/edit`)
-            }}>Edit Course Detials</button>)}
 
           <button onClick={() => {
             navigate('/courses')
           }}>Back</button>
+
           <h1>{course.title} Details</h1>
+          {courseOwnerId === currentUserId && (
+
+            <button onClick={() => {
+              navigate(`/courses/${course._id}/edit`)
+            }}>Edit Course Detials</button>
+          )}
+          
           <p>{course.description}</p>
 
           <p>Course Tasks:</p>
