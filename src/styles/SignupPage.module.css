@@ -1,0 +1,82 @@
+* {
+    --body: #fefbf1;
+    --darkYellow: #fbf0d4;
+    --dark: #404448;
+    --pink: #f0c4c5;
+    --darkPink: #c48490;
+    --blue: #6e91aa;
+    --transparent:  #fefbf18c;
+}
+
+.signUpContainer {
+    background-image: url('../src/images/4.png');
+    background-color: #FBF0D4;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
+    
+    
+}
+
+h1 {
+    font-family: 'Nectarine';
+    font-size: 4.5rem;
+    color: var(--pink);
+    -webkit-text-stroke: 0.005rem var(--body);
+    text-shadow: 3px 2px 6px #40444870;
+    margin: 0;
+    padding-top: 2rem;
+    padding-left: 12rem;
+}
+
+.formContainer{
+    display: inline-flex;
+    background-color: var(--transparent);
+
+    border-radius: 10px;
+    margin-top: 4rem;
+    margin-left: 7rem;
+    padding: 3rem;
+
+}
+
+.formElement{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    gap:1rem;
+}
+
+.btn{
+    background-color: var(--darkPink);
+    border: none;
+    border-radius: 14px;
+    width: 6rem;
+    height: 2rem;
+    color: var(--dark);
+}
+
+.btn:hover{
+    background-color: var(--pink);
+}
+
+
+.formInput{
+    border: none;
+    border-radius: 14px;
+    outline: none;
+
+}
+
+.formInput:focus
+{
+        border: var(--darkYellow) 2px solid;
+}
