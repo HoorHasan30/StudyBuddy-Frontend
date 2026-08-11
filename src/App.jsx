@@ -37,44 +37,55 @@ import { useEffect } from "react";
 import { getCurrentUser, logout } from "./services/authService";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { useAuth } from "./context/AuthContext";
+import RootLayout from "./components/RootLayout";
+import LayoutWithNavbar from "./components/LayoutWithoutNavbar";
 
 function App() {
   return (
     <div>
-      <Navbar/>
+
+      {/* <Navbar /> */}
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/sign-up" element={<SignupPage />} />
-        <Route path="/sign-in" element={<SignInPage />} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
 
-        <Route path="/courses" element={<ProtectedRoute><AllCourses/></ProtectedRoute>}/>
-        <Route path="/courses/create" element={<ProtectedRoute><CreateCourse/></ProtectedRoute>}/>
-        <Route path="/courses/:id" element={<ProtectedRoute><CourseDetails/></ProtectedRoute>}/>
-        <Route path="/courses/:id/edit" element={<ProtectedRoute><EditCourse/></ProtectedRoute>}/>
+        <Route path='/' element={<RootLayout />}>
+          <Route index element={<Homepage />} />
+          <Route path="/sign-up" element={<SignupPage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
+        </Route>
 
 
-        <Route path="/courses/:id/tasks" element={<ProtectedRoute><AllTasks/></ProtectedRoute>}/>
-        <Route path="/courses/:id/tasks/create" element={<ProtectedRoute><CreateTask/></ProtectedRoute>}/>
-        <Route path="/courses/:id/tasks/:taskId" element={<ProtectedRoute><TaskDetails/></ProtectedRoute>}/>
-        <Route path="/courses/:id/tasks/:taskId/edit" element={<ProtectedRoute><EditTask/></ProtectedRoute>}/>
+        <Route element={<LayoutWithNavbar />}>
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+
+          <Route path="/courses" element={<ProtectedRoute><AllCourses /></ProtectedRoute>} />
+          <Route path="/courses/create" element={<ProtectedRoute><CreateCourse /></ProtectedRoute>} />
+          <Route path="/courses/:id" element={<ProtectedRoute><CourseDetails /></ProtectedRoute>} />
+          <Route path="/courses/:id/edit" element={<ProtectedRoute><EditCourse /></ProtectedRoute>} />
+
+
+          <Route path="/courses/:id/tasks" element={<ProtectedRoute><AllTasks /></ProtectedRoute>} />
+          <Route path="/courses/:id/tasks/create" element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
+          <Route path="/courses/:id/tasks/:taskId" element={<ProtectedRoute><TaskDetails /></ProtectedRoute>} />
+          <Route path="/courses/:id/tasks/:taskId/edit" element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
 
 
 
-        <Route path="/timetable" element={<ProtectedRoute><GetTable/></ProtectedRoute>}/>
-        <Route path="/timetable/create" element={<ProtectedRoute><CreateTable/></ProtectedRoute>}/>
+          <Route path="/timetable" element={<ProtectedRoute><GetTable /></ProtectedRoute>} />
+          <Route path="/timetable/create" element={<ProtectedRoute><CreateTable /></ProtectedRoute>} />
 
-        <Route path="/sessions" element={<ProtectedRoute><CreateSession/></ProtectedRoute>}/>
+          <Route path="/sessions" element={<ProtectedRoute><CreateSession /></ProtectedRoute>} />
 
-        <Route path="/projects/create" element={<ProtectedRoute><CreateProject/></ProtectedRoute>}/>
-        <Route path="/projects" element={<ProtectedRoute><AllProjects/></ProtectedRoute>}/>
-        <Route path="/projects/:projectId" element={<ProtectedRoute><ProjectDetails/></ProtectedRoute>}/>
-        <Route path="/projects/:projectId/edit" element={<ProtectedRoute><EditProject/></ProtectedRoute>}/>
+          <Route path="/projects/create" element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
+          <Route path="/projects" element={<ProtectedRoute><AllProjects /></ProtectedRoute>} />
+          <Route path="/projects/:projectId" element={<ProtectedRoute><ProjectDetails /></ProtectedRoute>} />
+          <Route path="/projects/:projectId/edit" element={<ProtectedRoute><EditProject /></ProtectedRoute>} />
 
-        <Route path="/projects/:projectId/tasks" element={<ProtectedRoute><AllTasks/></ProtectedRoute>}/>
-        <Route path="/projects/:projectId/tasks/create" element={<ProtectedRoute><CreateTask/></ProtectedRoute>}/>
-        <Route path="/projects/:projectId/tasks/:taskId" element={<ProtectedRoute><TaskDetails/></ProtectedRoute>}/>
-        <Route path="/projects/:projectId/tasks/:taskId/edit" element={<ProtectedRoute><EditTask/></ProtectedRoute>}/>
+          <Route path="/projects/:projectId/tasks" element={<ProtectedRoute><AllTasks /></ProtectedRoute>} />
+          <Route path="/projects/:projectId/tasks/create" element={<ProtectedRoute><CreateTask /></ProtectedRoute>} />
+          <Route path="/projects/:projectId/tasks/:taskId" element={<ProtectedRoute><TaskDetails /></ProtectedRoute>} />
+          <Route path="/projects/:projectId/tasks/:taskId/edit" element={<ProtectedRoute><EditTask /></ProtectedRoute>} />
+
+        </Route>
 
       </Routes>
     </div>
