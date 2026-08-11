@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getProjectById, addCollaberator, removeCollaberator, createProjectTask, deleteProjectTaskById, updateProjectTaskStatus } from '../../services/projectService'
 import { useAuth } from '../../context/AuthContext'
+import { Flex, Spin } from 'antd'
 
 
 function ProjectDetails() {
 
   const navigate = useNavigate()
 
+  const [loading, setLoading] = useState(true)
+  
   const [error, setError] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -57,6 +60,9 @@ function ProjectDetails() {
 
   async function loadProjectDetails() {
     try {
+      setLoading(true)
+      setError(false)
+
       const response = await getProjectById(projectId)
       setProject({
         title: response.title ?? '',
@@ -74,6 +80,8 @@ function ProjectDetails() {
     }
     catch (err) {
       setError(err.response.data.message)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -136,6 +144,10 @@ function ProjectDetails() {
   const currentUserId = user?._id?.toString?.() ?? ''
   const projectOwnerId = project.owner?._id?.toString?.() ?? project.owner?.toString?.() ?? ''
 
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
 
   return (
     <div>

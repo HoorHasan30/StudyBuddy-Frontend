@@ -23,53 +23,53 @@ function AllCourses() {
 
     } catch (error) {
       setError(error?.response?.data?.message)
-    }finally{
+    } finally {
       setLoading(false)
     }
-   }
+  }
 
-   useEffect(()=>{
+  useEffect(() => {
     loadCourses()
-   },[])
+  }, [])
 
 
-   async function handleDelete(id){
+  async function handleDelete(id) {
     try {
       await deleteCourse(id)
       loadCourses()
-      
-    } catch (error) {
-     setError(error?.response?.data?.message)
-    }
-   }
 
-    if (loading) return <Flex align='center' gap='medium' justify='center'>
-        <Spin size='large' description='Loading...' />
-    </Flex>
-   if(error) return <p>ERROR: {error}</p>
-   if(courses.length === 0) return <p>No courses to show yet</p>
+    } catch (error) {
+      setError(error?.response?.data?.message)
+    }
+  }
+
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
+  if (courses.length === 0) return <p>No courses to show yet</p>
 
   return (
     <div>
 
       <h1>My Courses</h1>
-        <button onClick={()=>{
-          navigate('/courses/create')
-        }}>Create Course</button>
+      <button onClick={() => {
+        navigate('/courses/create')
+      }}>Create Course</button>
 
-        
-      {courses.map((oneCourse)=>
-      <div key={oneCourse._id}>
-        <p>{oneCourse.title}</p>
 
-        <button onClick={()=>{
-          handleDelete(oneCourse._id)
-        }}>Delete</button>
+      {courses.map((oneCourse) =>
+        <div key={oneCourse._id}>
+          <p>{oneCourse.title}</p>
 
-        <button onClick={()=>{
-          navigate(`/courses/${oneCourse._id}`)
-        }}>View Detials</button>
-      </div>
+          <button onClick={() => {
+            handleDelete(oneCourse._id)
+          }}>Delete</button>
+
+          <button onClick={() => {
+            navigate(`/courses/${oneCourse._id}`)
+          }}>View Detials</button>
+        </div>
       )}
 
 

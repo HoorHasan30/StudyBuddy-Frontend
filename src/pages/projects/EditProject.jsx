@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
+import { Flex, Spin } from 'antd'
+
 
 import { updateProjectDetails, getProjectById } from '../../services/projectService'
 
 function EditProject() {
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -41,6 +44,9 @@ function EditProject() {
     () => {
       async function loadDetails() {
         try {
+          setLoading(true)
+          setError(false)
+
           const response = await getProjectById(projectId)
           setFormData(
             {
@@ -52,12 +58,19 @@ function EditProject() {
         }
         catch (err) {
           setError(err?.response?.data?.message);
+        } finally {
+          setLoading(false)
         }
       }
       loadDetails()
     },
     []
   )
+
+  if (loading) return <Flex align='center' gap='medium' justify='center'>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
 
   return (
     <div>
