@@ -41,6 +41,8 @@ function GetTable() {
   async function handleDelete() {
     await deleteTimetable()
     loadTimeTable()
+
+    setTimeTable(null)
   }
 
   useEffect(() => {
@@ -67,12 +69,14 @@ function GetTable() {
     <main>
       <h1>My TimeTable</h1>
 
-      <button onClick={() => {
-        handleDelete()
-      }}>Delete</button>
-
-      <img src={timeTable.tableImage.url} alt="Current Timetable" />
-
+      <div className={styles.viewtable}>
+        <div id='delete-photo'>
+          <button onClick={() => {handleDelete()}}>🗑</button>
+        </div>
+        
+        <img src={timeTable.tableImage.url} alt="Current Timetable" />
+      </div>
+    
     </main>
   )
 }

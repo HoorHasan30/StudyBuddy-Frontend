@@ -1,0 +1,126 @@
+:global(#uploadPhotoMain) {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+:global(#uploadForm) {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photoForm {
+  background-image: url('../src/images/6.png');
+  background-color: #FBF0D4;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  border-radius: 2rem;
+  padding: 2rem .7rem .7rem .7rem;
+  box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+  text-align: center;
+  font-size: 1.125rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 50%;
+  height: 15rem;
+
+  margin-top: 2rem;
+}
+
+.form-title {
+  color: var(--dark);
+  font-size: 2rem;
+}
+
+.form-paragraph {
+  font-size: 0.95rem;
+  color: var(--darkPink);
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
+}
+
+:global(#file-input) {
+  width: 350px;
+  max-width: 100%;
+  color: var(--dark);
+  padding: 1%;
+  background: var(--body);
+  border-radius: 1rem;
+  border: 1px solid rgba(8, 8, 8, 0.288);
+}
+
+:global(#file-input::file-selector-button) {
+  margin-right: 20px;
+  border: none;
+  background: var(--darkPink);
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: var(--body);
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+}
+
+:global(#file-input::file-selector-button:hover) {
+  background: var(--pink);
+}
+
+:global(#addPhoto) {
+  margin: 2%;
+  padding: 1%;
+
+  width: 6rem;
+
+  border-radius: 1rem;
+  border: none;
+
+  background-color: var(--blue);
+  color: var(--body);
+}
+
+:global(#viewPhoto) {
+  /* background-image: url('../src/images/6.png');
+  background-color: #FBF0D4;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center; */
+
+  background-color: var(--darkYellow);
+  
+
+  border-radius: 2rem;
+  padding: 1rem .7rem .7rem .7rem;
+  margin: 5%;
+  box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+  text-align: center;
+
+  width: 50%;
+  min-height: 5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+} 
+
+:global(#viewPhoto img){
+  width: 90%;
+  margin: 3%;
+  box-sizing: border-box;
+}
