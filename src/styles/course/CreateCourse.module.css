@@ -22,38 +22,35 @@
 .container {
     display: flex;
     justify-content: center;
+        height: 100%;
+
 }
 
 .formContainer {
     display: flex;
     background-color: var(--transparent);
-
     border-radius: 10px;
-    margin-top: 4rem;
-    margin-left: 15rem;
-    margin-right: -10rem;
+  height: 55%;
+  margin-top: 3rem;
     padding: 3rem;
+    box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
 
 
 }
 
-.image {
-    width: 50%;
-    padding-top: 3rem;
-    margin-right: 10%;
-    display: flex;
-}
+
 
 .formElement {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     margin-bottom: 1rem;
 }
 .formLabel{
     display: flex;
     text-align: left;
-    width: 6rem;
+    width: 10rem;
     flex-shrink: 0;
+    font-weight: 500;
 
 }
 
@@ -62,6 +59,7 @@
     border-radius: 14px;
     outline: none;
     width: 12rem;
+    height: 2rem;
 }
 
 .formInput:focus {
@@ -74,7 +72,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
 .btn {

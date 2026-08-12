@@ -76,7 +76,6 @@ function CreateCourse() {
 
         </form>
       </div>
-            <img className={styles.image} src="/src/images/10.png" alt="No Course to show" />
       </div>
   
     </main>
