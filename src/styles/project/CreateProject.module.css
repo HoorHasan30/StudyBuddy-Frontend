@@ -26,7 +26,6 @@
 .container {
     display: flex;
     justify-content: center;
-
     height: 100%;
 }
 
@@ -36,14 +35,14 @@
     border-radius: 10px;
     padding: 3rem;
     box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
-
-    height: 35%;
+    margin-top: 2rem;
+    height: 75%;
 }
 
 
 .formElement {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     margin-bottom: 1rem;
 }
 
@@ -52,6 +51,7 @@
     text-align: left;
     width: 10rem;
     flex-shrink: 0;
+    font-weight: 500;
 
 }
 
