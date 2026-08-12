@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-
 import { createProject } from '../../services/projectService';
+import styles from '../../styles/project/CreateProject.module.css'
 
 function CreateProject() {
 
@@ -43,15 +43,19 @@ function CreateProject() {
   )
 
   return (
-    <main>
+    <main className={styles.pageContainer}>
       <h1>Create Project</h1>
 
       <p className='error'>{error}</p>
+<div className={styles.container}>
+
+<div className={styles.formContainer}>
 
       <form autoComplete='off' onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='title'>Project Title:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='title'>Project Title:</label>
           <input
+          className={styles.formInput}
             type='text'
             autoComplete='off'
             id='title'
@@ -61,9 +65,10 @@ function CreateProject() {
             required
           />
         </div>
-        <div>
-          <label htmlFor='description'>Project description:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='description'>Project description:</label>
           <textarea
+          className={styles.formInput}
             type='text'
             autoComplete='off'
             id='description'
@@ -74,9 +79,10 @@ function CreateProject() {
           ></textarea>
         </div>
 
-        <div>
-          <label htmlFor='deadline'>Project Deadline:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='deadline'>Project Deadline:</label>
           <input
+          className={styles.formInput}
             type='date'
             autoComplete='off'
             id='deadline'
@@ -86,12 +92,15 @@ function CreateProject() {
           />
         </div>
 
-        <div>
-          <button>Create Project</button>
-          <button onClick={() => navigate('/projects')}>Cancel</button>
+        <div className={styles.btnContainer}>
+          <button className={styles.btnCancel} onClick={() => navigate('/projects')}>Cancel</button>
+          <button className={styles.btn}>Create Project</button>
         </div>
 
       </form>
+      </div>
+            <img className={styles.image} src="/src/images/9.png" alt="No Course to show" />
+      </div>
     </main>
   )
 }
