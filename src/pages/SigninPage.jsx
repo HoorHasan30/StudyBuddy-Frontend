@@ -1,7 +1,7 @@
 // src/components/SignInForm/SignInForm.jsx
 import styles from '../styles/SigninPage.module.css'
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { signIn } from '../services/authService';
