@@ -41,7 +41,7 @@ function Signup() {
 
   useEffect(
     () => {
-    document.title = "Sign Up | StudyBuddy";
+      document.title = "Sign Up | StudyBuddy";
     },
     []
   )
@@ -49,6 +49,8 @@ function Signup() {
   return (
 
     <div className={styles.signUpContainer}>
+
+      <div className={styles.authContent}>
         <h1 id="signUp-Title">Sign Up</h1>
         <p className="error">{error}</p>
         <div className={styles.formContainer}>
@@ -95,6 +97,12 @@ function Signup() {
             </div>
           </form>
         </div>
+      </div>
+      
+      <div className={styles.noContent}>
+        <img id="auth-pic" src="../src/assets/circle-logo.png" alt="logo" />
+      </div>
+
     </div>
   );
 }
