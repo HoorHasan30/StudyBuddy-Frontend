@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import { getOneCourse, createCourseTask, deleteCourseTask, updateTaskStatus } from '../../services/courseService'
 import { Flex, Spin } from 'antd'
 import { useAuth } from '../../context/AuthContext'
-
+import styles from '../../styles/course/CourseDetails.module.css'
 
 function CourseDetails() {
   const [course, setCourse] = useState({})
@@ -106,82 +106,120 @@ function CourseDetails() {
   </Flex>
   if (error) return <p>ERROR: {error}</p>
   return (
-    <main>
+    <main className={styles.pageContainer}>
       {course && (
         <>
+          <div className={styles.header}>
+            <button className={styles.btnBack} onClick={() => {
+              navigate('/courses')
+            }}>Back</button>
+            <h1>{course.title} Details</h1>
+          </div>
 
-          <button onClick={() => {
-            navigate('/courses')
-          }}>Back</button>
+          <div className={styles.courseContainer}>
 
-          <h1>{course.title} Details</h1>
-          {courseOwnerId === currentUserId && (
+            <h2>Course Description:</h2>
+            <div className={styles.courseDetails}>
 
-            <button onClick={() => {
-              navigate(`/courses/${course._id}/edit`)
-            }}>Edit Course Detials</button>
-          )}
-          
-          <p>{course.description}</p>
+            <p>{course.description}</p>
+            {courseOwnerId === currentUserId && (
 
-          <p>Course Tasks:</p>
-          <h2>Add task:</h2>
-
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="title">Task Title:</label>
-              <input type='text' autoComplete='off' name='title' id='title' onChange={handleChange} />
+              <button className={styles.btn} onClick={() => {
+                navigate(`/courses/${course._id}/edit`)
+              }}>Edit Course Detials</button>
+            )}
             </div>
 
-            <div>
-              <label htmlFor="priority">Task Priority:</label>
+          </div>
 
-              <select name="priority" id="priority" onChange={handleChange}>
-                <option value="">Select proiority</option>
-                <option value="High"> High</option>
-                <option value="Moderate">Moderates</option>
-                <option value="Low">Low</option>
+          <div className={styles.tasksContainer}>
 
-              </select>
+          <div className={styles.taskList}>
+            <p>Course Tasks:</p>
 
+            {courseTasks.map((task) => (
+              <div className={styles.taskDetails} key={`${task._id}`}>
+                <span className={styles.taskTitle}>
+                  {task.title}
+                </span>
+
+                <span className={styles.taskPriority}>
+                  {task.priority}
+                </span>
+
+                <span className={styles.date}>
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }).format(new Date(task.deadline))}
+
+                </span>
+                <span className={styles.status}>
+                  {task.status}
+                </span>
+
+                {courseOwnerId === currentUserId && (
+                  <>
+                    <button className={styles.btnDelete} onClick={() => { handleDelete(task._id) }}>🗑</button>
+
+                    {task.status === 'To Do' ? <button className={styles.btnDone} onClick={() => { handleTaskStatus(task._id) }}>✔</button> : ''}
+
+                  </>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div>
+          </div>
+
+          <div className={styles.addTaskContainer}>
+
+            <h2 className={styles.addTask}>Add task:</h2>
+            <div className={styles.formContainer}>
+              <form onSubmit={handleSubmit}>
+                <div className={styles.formElement}>
+                  <label className={styles.formLabel} htmlFor="title">Task Title:</label>
+                  <input className={styles.formInput} type='text' autoComplete='off' name='title' id='title' onChange={handleChange} />
+                </div>
+
+                <div className={styles.formElement}>
+                  <label className={styles.formLabel} htmlFor="priority">Task Priority:</label>
+
+                  <select className={styles.formInput} name="priority" id="priority" onChange={handleChange}>
+                    <option value="">Select proiority</option>
+                    <option value="High"> High</option>
+                    <option value="Moderate">Moderates</option>
+                    <option value="Low">Low</option>
+
+                  </select>
+
+                </div>
+
+
+                <div className={styles.formElement}>
+                  <label className={styles.formLabel} htmlFor="deadline">Task Deadline:</label>
+                  <input className={styles.formInput} type='date' autoComplete='off' name='deadline' id='deadline' onChange={handleChange} />
+
+                </div>
+                <div className={styles.btnContainer}>
+
+                  <button className={styles.btnAdd}>Add </button>
+                </div>
+              </form>
             </div>
+          </div>
+        </div>
 
 
-            <div>
-              <label htmlFor="deadline">Task Deadline:</label>
-              <input type='date' autoComplete='off' name='deadline' id='deadline' onChange={handleChange} />
-
-            </div>
-
-            <button>Add </button>
-          </form>
-
-          <hr />
 
 
-          {courseTasks.map((task) => (
-            <div key={`${task._id}`}>
-              {task.title} - {task.priority} - {new Intl.DateTimeFormat('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-              }).format(new Date(task.deadline))} -- {task.status}
+    </>
 
-              {courseOwnerId === currentUserId && (
-                <>
-                  <button onClick={() => { handleDelete(task._id) }}>Delete</button>
-
-                  {task.status === 'To Do' ? <button onClick={() => { handleTaskStatus(task._id) }}>Done</button> : ''}
-
-                </>
-              )}
-            </div>
-          ))}
-
-        </>
-
-      )}
-    </main>
+  )
+}
+    </main >
   )
 }
 

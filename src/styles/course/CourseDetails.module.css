@@ -1,0 +1,324 @@
+* {
+    --body: #fefbf1;
+    --darkYellow: #fbf0d4;
+    --dark: #404448;
+    --pink: #f0c4c5;
+    --darkPink: #c48490;
+    --blue: #6e91aa;
+    --transparent: #fefbf198;
+    box-sizing: border-box;
+}
+
+
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    gap: 1rem;
+    margin-left: 12%;
+    padding: 1.5rem 2rem;
+    width: 88%;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+
+
+}
+
+.header h1{
+    margin: 0;
+    text-align: center;
+}
+
+.courseContainer {
+    box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 1.2rem 2rem;
+    margin: 0 auto 0.2rem auto;
+    width: 100%;
+    max-width: 65rem;
+    height: auto;
+    outline: 2px var(--blue) dashed;
+    outline-offset: -11px;
+}
+
+
+.courseContainer h2 {
+    color: var(--blue);
+    font-size: 25px;
+    font-weight: 800;
+    margin-right: 1rem;
+    text-align: left;
+
+}
+
+.courseDetails {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    gap: 3rem;
+    margin-top: 0.5rem;
+
+
+}
+
+.courseDetails p {
+    margin: 0;
+}
+
+.tasksContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0 auto;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 75rem;
+    min-height: 0;
+    flex: 1;
+}
+
+.addTaskContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 2rem;
+    height: 105%;
+    min-height: 0;
+    outline: 2px var(--blue) dashed;
+    outline-offset: -11px;
+    flex: 1;
+    box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+
+}
+
+.addTask {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--blue);
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+.taskList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    outline: 2px var(--blue) dashed;
+    outline-offset: -11px;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+    margin: 0;
+    height: 100%;
+    flex: 1;
+    overflow-y: auto;
+
+}
+
+.taskDetails {
+    background-color: var(--transparent);
+    display: flex;
+    gap: 0.3rem;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.6rem;
+    border-radius: 5px;
+    margin-bottom: 0.3rem;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.taskTitle {
+    font-weight: 600;
+    margin-right: 2rem;
+}
+
+.taskPriority {
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background-color: var(--pink);
+    color: var(--darkPink);
+    margin-right: 2rem;
+}
+
+.taskList p {
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--blue);
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.date {
+    margin-right: 2rem;
+    font-size: 12px;
+}
+
+.status {
+    color: var(--darkPink);
+    font-weight: 500;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--transparent);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    min-height: 0;
+    flex: none;
+    height: auto;
+
+}
+
+.formContainer form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    height: auto;
+}
+
+
+.formElement {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.formLabel {
+    display: flex;
+    text-align: left;
+    width: 7rem;
+    flex-shrink: 0;
+    margin-right: 1rem;
+    font-size: 15px;
+}
+
+.formInput {
+    border: none;
+    padding: 0.3rem 0.4rem;
+    border-radius: 14px;
+    outline: none;
+    width: 12rem;
+    flex: 1;
+}
+
+.formInput:focus {
+    border: var(--darkYellow) 2px solid;
+}
+
+
+
+.btnContainer {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.2rem;
+    margin-bottom: 0.7rem;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkPink);
+    border: none;
+    border-radius: 14px;
+    width: 8rem;
+    height: 2rem;
+    color: var(--body);
+
+}
+
+.btn:hover {
+    background-color: var(--pink);
+    cursor: pointer;
+}
+
+.btnAdd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--darkPink);
+    border: none;
+    border-radius: 14px;
+    width: 4rem;
+    height: 1.4rem;
+    color: var(--body);
+    margin-top: 0.3rem;
+
+
+}
+
+.btnAdd:hover {
+    background-color: var(--pink);
+    cursor: pointer;
+}
+
+.btnBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue);
+    border: none;
+    border-radius: 14px;
+    width: 6rem;
+    height: 2rem;
+    color: var(--body);
+    margin-bottom: 0;
+    position: absolute;
+    right: 0;
+    box-shadow: 0 0.15rem 0.5rem rgba(65, 69, 73, 0.286);
+
+
+}
+
+.btnBack:hover {
+    background-color: #93a8b8;
+    cursor: pointer;
+}
+
+.btnDelete {
+    font-size: 1.5rem;
+    border: none;
+    background-color: #fefbf120;
+    color: var(--darkPink);
+    margin: 0.4rem;
+}
+
+
+.btnDone {
+    background-color: #93a8b8;
+    border: none;
+    border-radius: 14px;
+    width: 2.5rem;
+    height: 1.9rem;
+    color: var(--body);
+    font-size: 1.3rem;
+}
+
+.btnDone:hover {
+    background-color: var(--blue);
+    cursor: pointer;
+}
