@@ -1,4 +1,4 @@
-:global(#pomodoro-container){
+:global(#pomodoro-container) {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -9,7 +9,7 @@
     margin: 1%;
 }
 
-.pomodoro-cards{
+.pomodoro-cards {
     width: 49%;
     min-height: 5rem;
 
@@ -17,13 +17,18 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+
+    animation: fadeInUp 0.6s ease-out both;
 }
 
-:global(#history h2){
+.pomodoro-cards:nth-child(1) { animation-delay: 0.1s; }
+.pomodoro-cards:nth-child(2) { animation-delay: 0.25s; }
+
+:global(#history h2) {
     margin-bottom: 3.5%;
 }
 
-.session{
+.session {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,22 +44,39 @@
     border-radius: 2rem;
 
     color: var(--dark);
+
+    opacity: 0;
+    animation: sessionSlideIn 0.5s ease-out both;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
-.pomodoro-cards h2{
+.session:hover {
+    transform: translateX(0.3rem) scale(1.015);
+    box-shadow: 0 0.3rem 0.7rem rgba(65, 69, 73, 0.2);
+}
+
+/* Stagger session list items */
+.session:nth-child(1) { animation-delay: 0.3s; }
+.session:nth-child(2) { animation-delay: 0.4s; }
+.session:nth-child(3) { animation-delay: 0.5s; }
+.session:nth-child(4) { animation-delay: 0.6s; }
+.session:nth-child(5) { animation-delay: 0.7s; }
+.session:nth-child(6) { animation-delay: 0.8s; }
+
+.pomodoro-cards h2 {
     color: var(--blue);
     font-size: 2rem;
     margin: 0;
 }
 
-:global(#timer){
+:global(#timer) {
     height: 22rem;
     width: 22rem;
     background-color: var(--darkYellow);
     border-radius: 50%;
 
-    outline: dashed var(--blue) ;
-    outline-offset:-10px;
+    outline: dashed var(--blue);
+    outline-offset: -10px;
 
     margin: 3.5%;
     padding: 2%;
@@ -63,25 +85,41 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    animation: timerPopIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both,
+               timerBreathe 3.5s ease-in-out 0.9s infinite;
+    transition: outline-offset 0.3s ease;
+}
+
+:global(#timer:hover) {
+    outline-offset: -14px;
 }
 
 :global(#timer img) {
     width: 60%;
+    transition: transform 0.4s ease;
+}
+
+:global(#timer:hover img) {
+    transform: rotate(15deg);
 }
 
 :global(#timer h3) {
     font-size: 2rem;
     color: var(--darkPink);
     margin: 0;
+    animation: fadeIn 0.6s ease-out 0.4s both;
 }
 
-:global(#btns){
+:global(#btns) {
     width: 30%;
     margin: 1%;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    animation: fadeInUp 0.6s ease-out 0.5s both;
 }
 
 :global(#btns button) {
@@ -94,6 +132,83 @@
 
     color: var(--dark);
     font-size: 1rem;
+
+    cursor: pointer;
+    transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+:global(#btns button:hover) {
+    background-color: var(--darkPink);
+    transform: translateY(-0.15rem);
+    box-shadow: 0 0.3rem 0.6rem rgba(65, 69, 73, 0.25);
+}
 
+:global(#btns button:active) {
+    transform: translateY(0) scale(0.95);
+    box-shadow: none;
+}
+
+/* ---------- Keyframes ---------- */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(0.8rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes sessionSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-1rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes timerPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.85) rotate(-8deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+@keyframes timerBreathe {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.015);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pomodoro-cards,
+    .session,
+    :global(#timer),
+    :global(#timer h3),
+    :global(#btns) {
+        animation: none !important;
+    }
+    :global(#btns button),
+    :global(#timer),
+    :global(#timer img),
+    .session {
+        transition: none !important;
+    }
+}
