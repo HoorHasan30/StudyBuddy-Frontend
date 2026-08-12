@@ -40,52 +40,60 @@ const SignInForm = ({ }) => {
     }
   };
 
-    useEffect(
-      () => {
+  useEffect(
+    () => {
       document.title = "Sign In | StudyBuddy";
-      },
-      []
-    )
+    },
+    []
+  )
 
   return (
     <div className={styles.signInContainer}>
-      <h1 id='signIn-Title'>Sign In</h1>
-      <p className='error'>{error}</p>
-      <div className={styles.formContainer}>
 
-        <form autoComplete='off' onSubmit={handleSubmit}>
-          <div className={styles.formElement}>
-            <label htmlFor='email'>Username:</label>
-            <input
-              className={styles.formInput}
-              type='text'
-              autoComplete='off'
-              id='username'
-              value={formData.username}
-              name='username'
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formElement}>
-            <label htmlFor='password'>Password:</label>
-            <input
-              className={styles.formInput}
+      <div className={styles.noContent}>
+        <img id="auth-pic" src="../src/assets/circle-logo.png" alt="logo" />
+      </div>
 
-              type='password'
-              autoComplete='off'
-              id='password'
-              value={formData.password}
-              name='password'
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.btnContainer}>
-            <button className={styles.btn}>Sign In</button>
-            <button className={styles.btn} onClick={() => navigate('/')}>Cancel</button>
-          </div>
-        </form>
+      <div className={styles.authContent}>
+        <h1 id='signIn-Title'>Sign In</h1>
+        <p className='error'>{error}</p>
+
+        <div className={styles.formContainer}>
+
+          <form autoComplete='off' onSubmit={handleSubmit}>
+            <div className={styles.formElement}>
+              <label htmlFor='email'>Username:</label>
+              <input
+                className={styles.formInput}
+                type='text'
+                autoComplete='off'
+                id='username'
+                value={formData.username}
+                name='username'
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.formElement}>
+              <label htmlFor='password'>Password:</label>
+              <input
+                className={styles.formInput}
+
+                type='password'
+                autoComplete='off'
+                id='password'
+                value={formData.password}
+                name='password'
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.btnContainer}>
+              <button className={styles.btn}>Sign In</button>
+              <button className={styles.btn} onClick={() => navigate('/')}>Cancel</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

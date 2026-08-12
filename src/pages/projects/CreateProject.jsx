@@ -35,70 +35,70 @@ function CreateProject() {
     }
   };
 
-    useEffect(
+  useEffect(
     () => {
-    document.title = "New Project| StudyBuddy";
+      document.title = "New Project| StudyBuddy";
     },
     []
   )
 
   return (
     <main className={styles.pageContainer}>
-      <h1>Create Project</h1>
+      <h1 id="create-title">Create Project</h1>
 
       <p className='error'>{error}</p>
-<div className={styles.container}>
+      <div className={styles.container}>
 
-<div className={styles.formContainer}>
+        <div className={styles.formContainer}>
 
-      <form autoComplete='off' onSubmit={handleSubmit}>
-        <div className={styles.formElement}>
-          <label className={styles.formLabel} htmlFor='title'>Project Title:</label>
-          <input
-          className={styles.formInput}
-            type='text'
-            autoComplete='off'
-            id='title'
-            value={formData.title}
-            name='title'
-            onChange={handleChange}
-            required
-          />
+          <form autoComplete='off' onSubmit={handleSubmit}>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='title'>Project Title:</label>
+              <input
+                className={styles.formInput}
+                type='text'
+                autoComplete='off'
+                id='title'
+                value={formData.title}
+                name='title'
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='description'>Project description:</label>
+              <textarea
+                className={styles.formInput}
+                type='text'
+                autoComplete='off'
+                id='description'
+                value={formData.description}
+                name='description'
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='deadline'>Project Deadline:</label>
+              <input
+                className={styles.formInput}
+                type='date'
+                autoComplete='off'
+                id='deadline'
+                value={formData.deadline}
+                name='deadline'
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.btnContainer}>
+              <button type='button' className={styles.btnCancel} onClick={() => navigate('/projects')}>Cancel</button>
+              <button type='submit' className={styles.btn}>Create Project</button>
+            </div>
+
+          </form>
         </div>
-        <div className={styles.formElement}>
-          <label className={styles.formLabel} htmlFor='description'>Project description:</label>
-          <textarea
-          className={styles.formInput}
-            type='text'
-            autoComplete='off'
-            id='description'
-            value={formData.description}
-            name='description'
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-
-        <div className={styles.formElement}>
-          <label className={styles.formLabel} htmlFor='deadline'>Project Deadline:</label>
-          <input
-          className={styles.formInput}
-            type='date'
-            autoComplete='off'
-            id='deadline'
-            value={formData.deadline}
-            name='deadline'
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className={styles.btnContainer}>
-          <button type='button' className={styles.btnCancel} onClick={() => navigate('/projects')}>Cancel</button>
-          <button type='submit' className={styles.btn}>Create Project</button>
-        </div>
-
-      </form>
-      </div>
       </div>
     </main>
   )
