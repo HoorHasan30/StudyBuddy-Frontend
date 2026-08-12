@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { useAuth } from '../../context/AuthContext'
 import { Flex, Spin } from 'antd'
 import { getTimetable, deleteTimetable } from '../../services/timetableService'
+import styles from '../../styles/timetable/GetTable.module.css'
 
 function GetTable() {
 
@@ -52,9 +53,10 @@ function GetTable() {
   </Flex>
   if (error) return <p>ERROR: {error}</p>
   if (!timeTable) return (
-    <main>
+    <main className={styles.noTimeTable}>
+      <img className={styles.image} src="/src/images/8.png" alt="No Course to show" />
       <p>No timetable to show yet</p>
-      <button onClick={() => {
+      <button className={styles.btn} onClick={() => {
         navigate('/timetable/create')
       }}>Add TimeTable</button>
     </main>
