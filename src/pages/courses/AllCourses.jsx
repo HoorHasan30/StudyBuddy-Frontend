@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router'
 import { deleteCourse, getAllCourses } from '../../services/courseService'
 import { useAuth } from '../../context/AuthContext'
 import { Flex, Spin } from 'antd'
+import styles from '../../styles/course/AllCourses.module.css'
 
 function AllCourses() {
 
@@ -47,7 +48,17 @@ function AllCourses() {
     <Spin size='large' description='Loading...' />
   </Flex>
   if (error) return <p>ERROR: {error}</p>
-  if (courses.length === 0) return <p>No courses to show yet</p>
+  if (courses.length === 0) return (
+
+    <main className={styles.noCourses}>
+      <img className={styles.image} src="/src/images/8.png" alt="No Course to show" />
+      <p>No courses to show yet</p>
+      <button className={styles.btn} onClick={() => {
+        navigate('/courses/create')
+      }}>Create Course</button>
+    </main>
+  )
+
 
   return (
     <main>
