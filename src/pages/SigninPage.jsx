@@ -55,7 +55,7 @@ const SignInForm = ({ }) => {
 
         <form autoComplete='off' onSubmit={handleSubmit}>
           <div className={styles.formElement}>
-            <label htmlFor='email'>Username:</label>
+            <label htmlFor='username'>Username:</label>
             <input
               className={styles.formInput}
               type='text'

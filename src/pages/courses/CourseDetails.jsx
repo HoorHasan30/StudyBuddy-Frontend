@@ -109,14 +109,17 @@ function CourseDetails() {
     <main className={styles.pageContainer}>
       {course && (
         <>
-          <div className={styles.btnBack}>
-            <button onClick={() => {
+          <div className={styles.header}>
+            <button className={styles.btnBack} onClick={() => {
               navigate('/courses')
             }}>Back</button>
+            <h1>{course.title} Details</h1>
           </div>
 
-          <h1>{course.title} Details</h1>
-          <div className={styles.courseDetails}>
+          <div className={styles.courseContainer}>
+
+            <h2>Course Description:</h2>
+            <div className={styles.courseDetails}>
 
             <p>{course.description}</p>
             {courseOwnerId === currentUserId && (
@@ -125,8 +128,11 @@ function CourseDetails() {
                 navigate(`/courses/${course._id}/edit`)
               }}>Edit Course Detials</button>
             )}
+            </div>
 
           </div>
+
+          <div className={styles.tasksContainer}>
 
           <div className={styles.taskList}>
             <p>Course Tasks:</p>
@@ -141,7 +147,7 @@ function CourseDetails() {
                   {task.priority}
                 </span>
 
-                <span>
+                <span className={styles.date}>
                   {new Intl.DateTimeFormat('en-US', {
                     month: 'short',
                     day: 'numeric',
@@ -149,7 +155,7 @@ function CourseDetails() {
                   }).format(new Date(task.deadline))}
 
                 </span>
-                <span>
+                <span className={styles.status}>
                   {task.status}
                 </span>
 
@@ -157,7 +163,7 @@ function CourseDetails() {
                   <>
                     <button className={styles.btnDelete} onClick={() => { handleDelete(task._id) }}>🗑</button>
 
-                    {task.status === 'To Do' ? <button className={styles.btnDone} onClick={() => { handleTaskStatus(task._id) }}>☑</button> : ''}
+                    {task.status === 'To Do' ? <button className={styles.btnDone} onClick={() => { handleTaskStatus(task._id) }}>✔</button> : ''}
 
                   </>
                 )}
@@ -170,7 +176,7 @@ function CourseDetails() {
 
           <div className={styles.addTaskContainer}>
 
-            <h2>Add task:</h2>
+            <h2 className={styles.addTask}>Add task:</h2>
             <div className={styles.formContainer}>
               <form onSubmit={handleSubmit}>
                 <div className={styles.formElement}>
@@ -199,20 +205,21 @@ function CourseDetails() {
                 </div>
                 <div className={styles.btnContainer}>
 
-                  <button className={styles.btn}>Add </button>
+                  <button className={styles.btnAdd}>Add </button>
                 </div>
               </form>
             </div>
           </div>
+        </div>
 
 
 
 
+    </>
 
-        </>
-
-      )}
-    </main>
+  )
+}
+    </main >
   )
 }
 
