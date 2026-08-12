@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import { createTimeTable } from '../../services/timetableService'
 
+import styles from '../../styles/timetable/CreateTable.module.css'
 
 function CreateTable() {
 
@@ -17,7 +18,7 @@ function CreateTable() {
     const file = event.target.files[0]
     previewFile(file)
     setSelectedFile(file)
-    
+
   }
 
   const previewFile = (file) => {
@@ -48,26 +49,42 @@ function CreateTable() {
     }
   }
 
-    useEffect(
+  useEffect(
     () => {
-    document.title = "Add Timetable | StudyBuddy";
+      document.title = "Add Timetable | StudyBuddy";
     },
     []
   )
   return (
     <main>
       <h1>Create TimeTable</h1>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <div id='uploadPhotoMain'>
+        
+        <div id="uploadForm">
+          <form onSubmit={handleSubmit} encType="multipart/form-data" className={styles.photoForm}>
 
-        <label htmlFor="image">Upload your TimeTable:</label>
-        <input type="file" name='image' id='image' onChange={handleChange} accept='image/png, image/jpg, image/jpeg'/>
+            <label htmlFor="image" className={styles['form-title']}>Upload your TimeTable</label>
 
-        <button>Add TimeTable</button>
-      </form>
+            <p className={styles['form-paragraph']}>
+              File should be an image
+            </p>
 
-      {image && (
-        <img src={image} alt="Current TimaeTable" />
-      )}
+            <input type="file" name='image' id='image' id='file-input' onChange={handleChange} accept='image/png, image/jpg, image/jpeg' />
+
+            <button id="addPhoto">Add</button>
+          </form>
+        </div>
+
+        <div id="viewPhoto">
+          <p className={styles['form-title']}>View Photo</p>
+
+          {image && (
+            <img src={image} alt="Current TimaeTable" />
+          )}
+          
+        </div>
+
+      </div>
     </main>
   )
 }

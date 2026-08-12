@@ -93,13 +93,12 @@ function CreateProject() {
         </div>
 
         <div className={styles.btnContainer}>
-          <button className={styles.btnCancel} onClick={() => navigate('/projects')}>Cancel</button>
-          <button className={styles.btn}>Create Project</button>
+          <button type='button' className={styles.btnCancel} onClick={() => navigate('/projects')}>Cancel</button>
+          <button type='submit' className={styles.btn}>Create Project</button>
         </div>
 
       </form>
       </div>
-            <img className={styles.image} src="/src/images/9.png" alt="No Course to show" />
       </div>
     </main>
   )
