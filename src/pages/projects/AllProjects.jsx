@@ -84,7 +84,7 @@ function AllProjects() {
                 <button onClick={() => { handleDeleteProject(p._id) }} className={styles.deleteProject}>🗑</button>
               </div>
 
-              <p>Deadline:  {' '} 
+              <p>Deadline:  {' '}
                 <span className={styles.projectDeadline}>
                   {new Intl.DateTimeFormat('en-US', {
                     month: 'short',
@@ -94,7 +94,11 @@ function AllProjects() {
                 </span>
               </p>
 
-              <button  className={styles.viewProjectDetails} onClick={() => { navigate(`/projects/${p._id}`) } }>View Details</button>
+
+              <div id='viewDetailsContainer'>
+                <button className={styles.viewProjectDetails} onClick={() => { navigate(`/projects/${p._id}`) }}>View Details</button>
+              </div>
+
             </div>
           )}
         </div>

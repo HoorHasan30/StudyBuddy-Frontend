@@ -65,24 +65,34 @@ function AllCourses() {
     <main>
 
       <h1>My Courses</h1>
-      <button onClick={() => {
-        navigate('/courses/create')
-      }}>Create Course</button>
 
-
-      {courses.map((oneCourse) =>
-        <div key={oneCourse._id}>
-          <p>{oneCourse.title}</p>
-
-          <button onClick={() => {
-            handleDelete(oneCourse._id)
-          }}>Delete</button>
-
-          <button onClick={() => {
-            navigate(`/courses/${oneCourse._id}`)
-          }}>View Detials</button>
+      <div className={styles.projectsContainer}>
+        <div className={styles.createProject}>
+          <button onClick={() => { navigate('/courses/create') }}>+ Create Course</button>
         </div>
-      )}
+
+
+        <div className={styles.projectsCardsContainer}>
+          {courses.map((oneCourse) =>
+            <div key={oneCourse._id} className={styles.projectCard}>
+
+              <div className={styles.cardHeader}>
+                <h3 className={styles.projectTitle} >{oneCourse.title}</h3>
+
+                <button onClick={() => { handleDelete(oneCourse._id) }} className={styles.deleteProject}>🗑</button>
+
+              </div>
+
+              <div id='viewDetailsContainer'>
+                <button className={styles.viewProjectDetails} onClick={() => { navigate(`/courses/${oneCourse._id}`) }}>View Details</button>
+              </div>
+
+            </div>
+          )}
+        </div>
+
+      </div>
+
 
 
     </main>

@@ -120,6 +120,19 @@
     width: 7rem;
 }
 
+.viewProjectDetails:hover{
+    color: var(--body);
+    background-color: var(--blue);
+}
+
+:global(#viewDetailsContainer){
+    width: 100%;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
 .deleteProject {
     color: var(--red);
     font-size: 1.5rem;

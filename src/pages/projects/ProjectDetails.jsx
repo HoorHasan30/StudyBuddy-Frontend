@@ -77,6 +77,8 @@ function ProjectDetails() {
         tasks: response.tasks ?? [],
         owner: response.owner ?? ''
       })
+
+      
     }
     catch (err) {
       setError(err.response.data.message)
@@ -155,6 +157,8 @@ function ProjectDetails() {
       <button onClick={() => { navigate('/projects') }}>Back</button>
 
       <h1>{project.title} Details</h1>
+
+      <p>By: {project.owner?.username ?? project.owner}</p>
 
       {projectOwnerId === currentUserId && (
         <button onClick={() => navigate(`/projects/${projectId}/edit`)}>Edit Project Details</button>
