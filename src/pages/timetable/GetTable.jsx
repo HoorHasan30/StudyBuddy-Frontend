@@ -41,6 +41,8 @@ function GetTable() {
   async function handleDelete() {
     await deleteTimetable()
     loadTimeTable()
+
+    setTimeTable(null)
   }
 
   useEffect(() => {
