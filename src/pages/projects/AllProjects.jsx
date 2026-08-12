@@ -56,14 +56,14 @@ function AllProjects() {
   if (projects.length === 0) {
     return (
       <main className={styles.noProjects}>
-      <img className={styles.image} src="/src/images/8.png" alt="No Project to show" />
-      <p>You Have No Projects Yet!</p>
-       <button className={styles.btn} onClick={() => {
-              navigate('/projects/create')
-            }}>Create Project</button>
+        <img className={styles.image} src="/src/images/8.png" alt="No Project to show" />
+        <p>You Have No Projects Yet!</p>
+        <button className={styles.btn} onClick={() => {
+          navigate('/projects/create')
+        }}>Create Project</button>
       </main>
     )
-    
+
   }
 
   return (
@@ -71,22 +71,34 @@ function AllProjects() {
       <h1>My Projects</h1>
       <p className="error">{error}</p>
 
-      <button onClick={() => { navigate('/projects/create') }}>Create Project</button>
+      <div className={styles.projectsContainer}>
+        <div className={styles.createProject}>
+          <button onClick={() => { navigate('/projects/create') }}>+ Create Project</button>
+        </div>
+        <div className={styles.projectsCardsContainer}>
+          {projects.map(p =>
+            <div key={p._id} className={styles.projectCard}>
 
-      {projects.map(p =>
-        <main key={p._id}>
-          <h3>{p.title}</h3>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.projectTitle}>{p.title}</h3>
+                <button onClick={() => { handleDeleteProject(p._id) }} className={styles.deleteProject}>🗑</button>
+              </div>
 
-          <p>{new Intl.DateTimeFormat('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-          }).format(new Date(p.deadline))}</p>
+              <p>Deadline:  {' '} 
+                <span className={styles.projectDeadline}>
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }).format(new Date(p.deadline))}
+                </span>
+              </p>
 
-          <button onClick={() => { handleDeleteProject(p._id) }}>Delete</button>
-          <button onClick={() => { navigate(`/projects/${p._id}`) }}>View Details</button>
-        </main>
-      )}
+              <button  className={styles.viewProjectDetails} onClick={() => { navigate(`/projects/${p._id}`) } }>View Details</button>
+            </div>
+          )}
+        </div>
+      </div>
 
     </main>
   )
