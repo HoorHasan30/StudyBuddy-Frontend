@@ -54,12 +54,12 @@ function CreateCourse() {
         <form onSubmit={handleSubmit}>
 
           <div className={styles.formElement}>
-            <label htmlFor="title">Title:</label>
+            <label className={styles.formLabel} htmlFor="title">Title:</label>
             <input className={styles.formInput} type="text" name='title' id='title' onChange={handleChange} value={formData.title} required />
           </div>
 
           <div className={styles.formElement}>
-            <label htmlFor="description">Description:</label>
+            <label className={styles.formLabel} htmlFor="description">Description:</label>
             <textarea className={styles.formInput} name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
           </div>
 
@@ -68,10 +68,10 @@ function CreateCourse() {
           </div>
           <div className={styles.btnContainer}>
 
-            <button className={styles.btn}>Create Course</button>
             <button className={styles.btnCancel} type='button' onClick={() => {
               navigate('/courses')
             }}>Cancel</button>
+            <button className={styles.btn}>Create Course</button>
           </div>
 
         </form>

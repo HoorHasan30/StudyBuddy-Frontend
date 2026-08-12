@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllProjects, deleteProject } from '../../services/projectService'
 import { useNavigate } from 'react-router'
 import { Flex, Spin } from 'antd'
-
+import styles from '../../styles/project/AllProjects.module.css'
 
 function AllProjects() {
 
@@ -54,7 +54,16 @@ function AllProjects() {
   </Flex>
   if (error) return <p>ERROR: {error}</p>
   if (projects.length === 0) {
-    return <p>You Have No Projects Yet!</p>
+    return (
+      <main className={styles.noProjects}>
+      <img className={styles.image} src="/src/images/8.png" alt="No Project to show" />
+      <p>You Have No Projects Yet!</p>
+       <button className={styles.btn} onClick={() => {
+              navigate('/projects/create')
+            }}>Create Project</button>
+      </main>
+    )
+    
   }
 
   return (
