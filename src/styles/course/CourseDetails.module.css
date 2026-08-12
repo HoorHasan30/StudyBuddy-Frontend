@@ -1,0 +1,166 @@
+* {
+    --body: #fefbf1;
+    --darkYellow: #fbf0d4;
+    --dark: #404448;
+    --pink: #f0c4c5;
+    --darkPink: #c48490;
+    --blue: #6e91aa;
+    --transparent: #fefbf198;
+}
+
+
+
+.pageContainer{
+    text-align: left;
+}
+
+.courseDetails{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem auto;
+    max-width: 40rem;
+}
+
+.addTaskContainer {
+    display: flex;
+    justify-content: center;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 1rem auto;
+    max-width: 50rem ;
+}
+
+.taskList{
+    outline: 2px var(--blue) dashed;
+    outline-offset: -8px;
+    background-color: var(--darkYellow);
+    border-radius: 10px;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 40rem;
+
+}
+
+.formContainer {
+    display: flex;
+    background-color: var(--transparent);
+
+    border-radius: 10px;
+    margin-top: 4rem;
+    padding: 3rem;
+
+
+}
+
+
+.formElement {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+.formLabel{
+    display: flex;
+    text-align: left;
+    width: 6rem;
+    flex-shrink: 0;
+
+}
+
+.formInput {
+    border: none;
+    border-radius: 14px;
+    outline: none;
+    width: 12rem;
+}
+
+.formInput:focus {
+    border: var(--darkYellow) 2px solid;
+}
+
+
+
+.btnContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn {
+    background-color: var(--darkPink);
+    border: none;
+    border-radius: 14px;
+    width: 8rem;
+    height: 2rem;
+    color: var(--body);
+}
+
+.btn:hover {
+    background-color: var(--pink);
+    cursor: pointer;
+}
+
+.btnBack {
+    background-color: var(--blue);
+    border: none;
+    border-radius: 14px;
+    width: 6rem;
+    height: 2rem;
+    color: var(--body);
+    margin-bottom: 1rem;
+}
+
+.btnBack:hover{
+    background-color: #93a8b8;
+    cursor: pointer;
+}
+
+.btnDelete{
+    font-size: 1.5rem;
+    border: none;
+    background-color: var(--darkYellow);
+    color: var(--darkPink);
+    margin: 1rem;
+}
+
+
+.btnDone {
+    background-color: var(--pink);
+    border: none;
+    border-radius: 14px;
+    width: 5rem;
+    height: 1.8rem;
+    color: var(--dark);
+}
+
+.btnDone:hover {
+    background-color: var(--darkPink);
+    cursor: pointer;
+}
+
+
+
+.taskTitle {
+    font-weight: 600;
+    margin-right: 3rem;
+}
+
+.taskPriority {
+    font-size: 0.8rem;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background-color: var(--pink);
+    color: var(--darkPink);
+    margin-right: 2rem;
+}
+
+.taskList p{
+    font-size: 25px;
+    font-weight: 800;
+    color: var(--blue);
+}
