@@ -125,6 +125,8 @@ main h1 {
 }
 
 .notFoundPage{
+    background-image: url('./images/6.png');
+    background-color: var(--darkYellow);
 
     display: flex;
     justify-content: center;
