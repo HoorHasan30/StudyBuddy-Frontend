@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { getOneCourse, updateCourse } from '../../services/courseService'
 import { Flex, Spin } from 'antd'
+import styles from '../../styles/course/EditCourse.module.css'
 
 function EditCourse() {
 
@@ -59,34 +60,47 @@ function EditCourse() {
 
   }, [])
 
-    useEffect(
+  useEffect(
     () => {
-    document.title = "Edit Course | StudyBuddy";
+      document.title = "Edit Course | StudyBuddy";
     },
     []
   )
 
   if (loading) return <Flex align='center' gap='medium' justify='center'>
-        <Spin size='large' description='Loading...' />
-    </Flex>
-   if(error) return <p>ERROR: {error}</p>
+    <Spin size='large' description='Loading...' />
+  </Flex>
+  if (error) return <p>ERROR: {error}</p>
 
   return (
-    <main>
+    <main className={styles.pageContainer}>
+
       <h1>EditCourse</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input type="text" name='title' id='title' onChange={handleChange} value={formData.title} />
+      <div className={styles.container}>
+        <div className={styles.formContainer}>
+          <form onSubmit={handleSubmit}>
 
-        <label htmlFor="description">Description:</label>
-        <textarea name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor="title">Title:</label>
+              <input className={styles.formInput} type="text" name='title' id='title' onChange={handleChange} value={formData.title} />
+            </div>
 
-        <button>Save</button>
-        <button type='button' onClick={()=>{
-          navigate(`/courses/${id}`)
-        }}>Cancel</button>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor="description">Description:</label>
+              <textarea className={styles.formInput} name="description" id="description" onChange={handleChange} value={formData.description}></textarea>
+            </div>
 
-      </form>
+            <div className={styles.btnContainer}>
+
+              <button type='submit' className={styles.btnSave}>Save</button>
+              <button  className={styles.btnCancel} type='button' onClick={() => {
+                navigate(`/courses/${id}`)
+              }}>Cancel</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
     </main>
   )
 }
