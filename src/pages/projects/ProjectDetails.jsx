@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router'
 import { getProjectById, addCollaberator, removeCollaberator, createProjectTask, deleteProjectTaskById, updateProjectTaskStatus } from '../../services/projectService'
 import { useAuth } from '../../context/AuthContext'
 import { Flex, Spin } from 'antd'
-
+import styles from '../../styles/project/ProjectDetails.module.css'
 
 function ProjectDetails() {
 
@@ -153,25 +153,43 @@ function ProjectDetails() {
   if (error) return <p>ERROR: {error}</p>
 
   return (
-    <main>
-      <button onClick={() => { navigate('/projects') }}>Back</button>
+    <main className={styles.pageContainer}>
 
+      <div className={styles.title}>
       <h1>{project.title} Details</h1>
+      </div>
 
-      <p>By: {project.owner?.username ?? project.owner}</p>
+      <div className={styles.headerContainer}>
+<div className={styles.header}>
 
+      <button className={styles.btnBack} onClick={() => { navigate('/projects') }}>Back</button>
       {projectOwnerId === currentUserId && (
-        <button onClick={() => navigate(`/projects/${projectId}/edit`)}>Edit Project Details</button>
+        <button className={styles.btnEdit} onClick={() => navigate(`/projects/${projectId}/edit`)}>Edit Project Details</button>
       )}
+</div>
+      </div>
+
+      <p className={styles.projectBy}>By: {project.owner?.username ?? project.owner}</p>
+
+<div className={styles.cardsContainer}>
+<div className={styles.projectDetails}>
+    <p><span className={styles.spanDetails}>Project Description:</span> {project.description}</p>
+        <p><span className={styles.spanDetails}>Project Deadline:</span> {project.deadline}</p>
+</div>
 
       {projectOwnerId === currentUserId && (
         <>
-          <h3>Add Collaberator: </h3>
+        <div className={styles.addCollabContainer}>
+
+          <h3 className={styles.addCollaberator}>Add Collaberator: </h3>
+
+<div className={styles.formContainer}>
 
           <form autoComplete='off' onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor='username'>Username:</label>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='username'>Username:</label>
               <input
+              className={styles.formInput}
                 type='text'
                 autoComplete='off'
                 id='username'
@@ -181,44 +199,99 @@ function ProjectDetails() {
                 required
               />
             </div>
-            <button>Add</button>
-
-          </form>
-
-          <hr></hr>
-        </>
-      )}
-
-      <p>{project.description}</p>
-
-      <p>Project Deadline: {project.deadline}</p>
-
-      <p>Project Collaberators: </p>
-      {allCollaberators.length ? (
-        <div>
-          {allCollaberators.map(u => (
-            <div key={`${u._id}`}>
-              {u.username}
-
-              {projectOwnerId === currentUserId && u._id !== currentUserId && (
-                <button onClick={() => handleRemoveCollaberator(u.username)}>Remove</button>
-              )}
+            <div className={styles.btnContainer}>
+            <button className={styles.btnAdd}>Add</button>
 
             </div>
-          ))
-          }
+
+          </form>
+</div>
+      
+  
+        <p className={styles.collaberators}>Project Collaberators: </p>
+        {allCollaberators.length ? (
+          <div>
+            {allCollaberators.map(u => (
+              <div className={styles.collabList} key={`${u._id}`}>
+               <span>
+                
+                {u.username}
+                </span> 
+  
+                {projectOwnerId === currentUserId && u._id !== currentUserId && (
+                  <button className={styles.btnDelete} onClick={() => handleRemoveCollaberator(u.username)}>Remove</button>
+                )}
+  
+              </div>
+            ))
+            }
+            
+          </div>
+        ) :
+          (<p>No Collaborators</p>)
+        }
         </div>
-      ) :
-        (<p>No Collaborators</p>)
-      }
+        
 
+        </>
+      )}
+      </div>
+
+          <div className={styles.tasksContainer}>
+          <div className={styles.taskList}>
       <p>Project Tasks:</p>
-      <h2>Add Task:</h2>
 
+          {projectTasks.length ? (
+            <div>
+              {projectTasks.map((task) => (
+                <div className={styles.taskDetails} key={`${task._id}`}>
+                  <span className={styles.taskTitle}>
+                    {task.title} 
+                  </span>
+                  
+                  <span className={styles.taskPriority}>
+               {task.priority} 
+
+                  </span>
+
+                  <span className={styles.date}>
+
+                  {new Intl.DateTimeFormat('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                  }).format(new Date(task.deadline))} 
+                  
+                  </span>
+                  <span className={styles.status}>
+
+                  {task.status}
+    
+                  </span>
+                  {task.owner?._id?.toString() === currentUserId && (
+                    <>
+                      <button className={styles.btnDelete} onClick={() => { handleDeleteTask(task._id) }}>🗑</button>
+    
+                      {task.status === 'To Do' ? <button className={styles.btnDone} onClick={() => { handleSetTaskStatus(task._id) }}>✔</button> : ''}
+                    </>
+                  )}
+                </div>
+              ))
+              }
+            </div>
+          ) :
+            (<p>No Tasks Yet</p>)
+          }
+  </div>
+<div className={styles.addTaskContainer}>
+
+      <h2 className={styles.addTask}>Add Task:</h2>
+<div className={styles.formContainer}>
       <form autoComplete='off' onSubmit={handleSubmitTask}>
-        <div>
-          <label htmlFor='title'>Task Title:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='title'>Task Title:</label>
           <input
+          className={styles.formInput}
             type='text'
             autoComplete='off'
             id='title'
@@ -229,9 +302,10 @@ function ProjectDetails() {
           />
         </div>
 
-        <div>
-          <label htmlFor='priority'>Task Priority:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='priority'>Task Priority:</label>
           <select
+          className={styles.formInput}
             id='priority'
             name='priority'
             value={taskFormData.priority}
@@ -245,9 +319,10 @@ function ProjectDetails() {
           </select>
         </div>
 
-        <div>
-          <label htmlFor='deadline'>Task Deadline:</label>
+        <div className={styles.formElement}>
+          <label className={styles.formLabel} htmlFor='deadline'>Task Deadline:</label>
           <input
+          className={styles.formInput}
             type='date'
             autoComplete='off'
             id='deadline'
@@ -257,39 +332,15 @@ function ProjectDetails() {
           />
         </div>
 
-        <div>
-          <button>Add</button>
+        <div className={styles.btnContainer}>
+          <button className={styles.btnAdd}>Add</button>
         </div>
 
       </form>
+</div>
 
-      <hr></hr>
-
-      {projectTasks.length ? (
-        <div>
-          {projectTasks.map((task) => (
-            <div key={`${task._id}`}>
-              {task.title} - {task.priority} - {new Intl.DateTimeFormat('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric'
-              }).format(new Date(task.deadline))} -- {task.status}
-
-              {task.owner?._id?.toString() === currentUserId && (
-                <>
-                  <button onClick={() => { handleDeleteTask(task._id) }}>Delete</button>
-
-                  {task.status === 'To Do' ? <button onClick={() => { handleSetTaskStatus(task._id) }}>Done</button> : ''}
-                </>
-              )}
-            </div>
-          ))
-          }
-        </div>
-      ) :
-        (<p>No Tasks Yet</p>)
-      }
-
+</div>
+</div>
     </main>
   )
 }
