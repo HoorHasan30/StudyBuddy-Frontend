@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { Flex, Spin } from 'antd'
-
-
 import { updateProjectDetails, getProjectById } from '../../services/projectService'
+import styles from '../../styles/project/EditProject.module.css'
 
 function EditProject() {
 
@@ -67,9 +66,9 @@ function EditProject() {
     []
   )
 
-    useEffect(
+  useEffect(
     () => {
-    document.title = "Edit Project | StudyBuddy";
+      document.title = "Edit Project | StudyBuddy";
     },
     []
   )
@@ -80,55 +79,62 @@ function EditProject() {
   if (error) return <p>ERROR: {error}</p>
 
   return (
-    <main>
+    <main className={styles.pageContainer}>
       <h1>Edit Project Details</h1>
       <p className='error'>{error}</p>
+      <div className={styles.container}>
 
-      <form autoComplete='off' onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor='title'>Project Title:</label>
-          <input
-            type='text'
-            autoComplete='off'
-            id='title'
-            value={formData.title}
-            name='title'
-            onChange={handleChange}
-            required
-          />
+        <div className={styles.formContainer}>
+
+          <form autoComplete='off' onSubmit={handleSubmit}>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='title'>Project Title:</label>
+              <input
+                className={styles.formInput}
+                type='text'
+                autoComplete='off'
+                id='title'
+                value={formData.title}
+                name='title'
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='description'>Project description:</label>
+              <textarea
+                className={styles.formInput}
+                type='text'
+                autoComplete='off'
+                id='description'
+                value={formData.description}
+                name='description'
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+
+            <div className={styles.formElement}>
+              <label className={styles.formLabel} htmlFor='deadline'>Project Deadline:</label>
+              <input
+                className={styles.formInput}
+                type='date'
+                autoComplete='off'
+                id='deadline'
+                value={formData.deadline}
+                name='deadline'
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className={styles.btnContainer}>
+              <button className={styles.btnSave}>Save</button>
+              <button className={styles.btnCancel} onClick={() => navigate(`/projects/${projectId}`)}>Cancel</button>
+            </div>
+
+          </form>
         </div>
-        <div>
-          <label htmlFor='description'>Project description:</label>
-          <textarea
-            type='text'
-            autoComplete='off'
-            id='description'
-            value={formData.description}
-            name='description'
-            onChange={handleChange}
-            required
-          ></textarea>
-        </div>
-
-        <div>
-          <label htmlFor='deadline'>Project Deadline:</label>
-          <input
-            type='date'
-            autoComplete='off'
-            id='deadline'
-            value={formData.deadline}
-            name='deadline'
-            onChange={handleChange}
-          />
-        </div>
-
-        <div>
-          <button>Save</button>
-          <button onClick={() => navigate(`/projects/${projectId}`)}>Cancel</button>
-        </div>
-
-      </form>
-
+      </div>
     </main>
   )
 }
