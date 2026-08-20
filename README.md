@@ -3,21 +3,55 @@
 ## Overview
 StudyBuddy is a productivity dashboard that helps students and users manage courses, projects, tasks, schedules, and study sessions in one place. The frontend includes protected routes, JWT-authentication, a Pomodoro timer, and deadline tracking to support focused study management.
 
-- Frontend: Deployed frontend
-- Backend API: Deployed Backend
-- Backend Repository: Backend GitHub Repository
+- Frontend: [Deployed frontend]
+- Backend API: [Deployed Backend](https://studybuddy-backend-xvhe.onrender.com)
+- Backend Repository: [Backend GitHub Repository](https://github.com/HoorHasan30/StudyBuddy-Backend)
 
 ## Screenshots
 
 ### Home Page
+![Home page](/public/images/homepage.png)
 
 ### Sign In / Sign Up Page
+![Sign In](/public/images/signin.png)
+![Sign Up](/public/images/signup.png)
 
 ### Dashboard
+![Dashboard page](/public/images/dashboard1.png)
 
-### Courses / Projects / Tasks Pages
+
+### Courses 
+![Create Course page](/public/images/create-course.png)
+![MY Courses page](/public/images/MY-courses.png)
+![Course Details page](/public/images/course-details.png)
+![Edit Course page](/public/images/edit-course.png)
+
+
+### Projects
+![Create Project page](/public/images/create-project.png)
+![My Projects page](/public/images/my-projects.png)
+![Project Details page](/public/images/project-details.png)
+![Edit Project page](/public/images/edit-project.png)
+
+
+### Timetable
+![Create Timetable page](/public/images/create-timetable.png)
+![View Timetable](/public/images/timetable.png)
+
 
 ### Pomodoro Session Page
+![Pomodoro Timer page](/public/images/pomodoro.png)
+
+
+### Empty States
+![No Courses page](/public/images/no-courses.png)
+![No Projects page](/public/images/no-project.png)
+![No Timetable page](/public/images/no-timetable.png)
+
+
+### 404 Page
+![404 Not Found](/public/images/404.png)
+
 
 ## Technologies Used
 - React
@@ -89,8 +123,8 @@ The backend API must be running before the frontend can access protected data.
 #### 1. Clone the repository
 
 ```bash
-git clone FRONTEND_REPOSITORY_URL
-cd FRONTEND_REPOSITORY_NAME
+git clone https://github.com/HoorHasan30/StudyBuddy-Frontend
+cd StudyBuddy-Frontend
 ```
 
 #### 2. Install dependencies
@@ -171,7 +205,12 @@ http://localhost:5173
 
 | Name | GitHub |
 | ---- | ------ |
-| Hoor Yousif | [GitHub profile] |
-| Walaa Ahmed | [GitHub profile] |
+| Hoor Yousif | [GitHub profile](https://github.com/HoorHasan30/) |
+| Walaa Ahmed | [GitHub profile](https://github.com/WA-2211) |
 
 ## Credits
+
+- [nayaba/upload-images-multer-cloudinary](https://github.com/nayaba/upload-images-multer-cloudinary) — reference for Multer + Cloudinary image upload setup
+- [YouTube tutorial](https://youtu.be/Rw_QeJLnCK4) — reference for backend/auth implementation
+- [YouTube tutorial](https://youtu.be/rhWG5KbLwVs) — reference for backend/auth implementation
+- General Assembly Software Engineering Immersive — project guidelines and mentorship
